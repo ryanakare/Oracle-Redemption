@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>戦闘ルール完全版 v1.5</title>
+<title>戦闘ルール完全版 v1.7</title>
 <style>
 body {
     font-family: "Meiryo", sans-serif;
@@ -69,9 +69,9 @@ th {
 
 <body>
 
-<h1>戦闘ルール完全版 v1.5</h1>
+<h1>戦闘ルール完全版 v1.7</h1>
 
-<!-- 判定方式 -->
+<!-- 1. 判定方式 -->
 <details open>
 <summary>1. 判定方式（共通）</summary>
 <section>
@@ -85,7 +85,7 @@ th {
 </section>
 </details>
 
-<!-- ターン構造 -->
+<!-- 2. ターン構造 -->
 <details>
 <summary>2. ターン構造</summary>
 <section>
@@ -102,15 +102,15 @@ th {
 </section>
 </details>
 
-<!-- ダメージロール -->
+<!-- 3. ダメージロールのタイミング -->
 <details>
 <summary>3. ダメージロールのタイミング</summary>
 <section>
-<p><strong>敵味方ともに、回避失敗時に初めてダメージロールを行う。</strong></p>
+<p><strong>敵味方ともに、回避失敗時にのみダメージロールを行う。</strong></p>
 </section>
 </details>
 
-<!-- 味方ステータス -->
+<!-- 4. 味方ステータス -->
 <details>
 <summary>4. 味方ステータス（A/B/C/D）</summary>
 <section>
@@ -126,7 +126,7 @@ th {
 </section>
 </details>
 
-<!-- ボスステータス -->
+<!-- 5. ボスステータス -->
 <details>
 <summary>5. ボスステータス</summary>
 <section>
@@ -142,7 +142,7 @@ th {
 </section>
 </details>
 
-<!-- ボスの回避 -->
+<!-- 6. ボスの回避 -->
 <details>
 <summary>6. ボスの回避</summary>
 <section>
@@ -150,12 +150,12 @@ th {
 <ul>
 <li>成功 → ダメージなし</li>
 <li>失敗 → ダメージロールへ</li>
-<li>命中クリティカル「必中」選択時 → 回避不可</li>
+<li>命中クリティカルで「必中」を選択した場合 → 回避不可</li>
 </ul>
 </section>
 </details>
 
-<!-- 特殊無効化 -->
+<!-- 7. 特殊無効化 -->
 <details>
 <summary>7. 特殊無効化（味方専用）</summary>
 <section>
@@ -174,7 +174,7 @@ th {
 </section>
 </details>
 
-<!-- 反撃ルール -->
+<!-- 8. 反撃ルール -->
 <details>
 <summary>8. 反撃ルール（完全版）</summary>
 <section>
@@ -183,21 +183,22 @@ th {
 <li>攻撃ファンブル時（96〜100）</li>
 <li>回避クリティカル時（1〜5）</li>
 </ul>
+<p>反撃対象は必ず「攻撃をしてきた相手」に固定される。</p>
 </section>
 </details>
 
-<!-- 反撃命中 -->
+<!-- 9. 反撃命中判定 -->
 <details>
 <summary>9. 反撃命中判定</summary>
 <section>
 <ul>
 <li>命中成功 → 必中（回避不可）</li>
-<li>命中クリティカル → 必中＋ダメージ2倍固定</li>
+<li>命中クリティカル → 必中＋ダメージ2倍固定（反撃時のみ自動で2倍）</li>
 </ul>
 </section>
 </details>
 
-<!-- 反撃追加 -->
+<!-- 10. 反撃追加判定 -->
 <details>
 <summary>10. 反撃追加判定</summary>
 <section>
@@ -209,13 +210,14 @@ th {
 
 <h3>追加ファンブル</h3>
 <ul>
-<li>命中成功＋追加ファンブル → 必中解除 → 回避可能化</li>
-<li>命中クリティカル＋追加ファンブル → 必中維持（回避不可）だが2倍消失</li>
+<li>命中成功＋追加ファンブル → 必中解除 → 回避可能化（回避成功なら0、失敗なら通常ダメージ）</li>
+<li>命中クリティカル＋追加ファンブル → 必中維持（回避不可）だが2倍が消え、通常ダメージになる</li>
 </ul>
+<p>※ 追加ファンブル時に対象選択（1d4）は行わない。反撃対象は常に攻撃者固定。</p>
 </section>
 </details>
 
-<!-- 反撃時の回避 -->
+<!-- 11. 反撃時の回避 -->
 <details>
 <summary>11. 反撃時の回避</summary>
 <section>
@@ -231,32 +233,33 @@ th {
 </section>
 </details>
 
-<!-- 回避クリティカル -->
+<!-- 12. 回避クリティカル -->
 <details>
 <summary>12. 回避クリティカル（反撃発生）</summary>
 <section>
 <ul>
 <li>回避成功（ダメージ0）</li>
-<li>反撃発生</li>
-<li>反撃命中成功＝必中</li>
-<li>反撃追加判定は通常どおり適用</li>
+<li>反撃発生（対象はその攻撃者）</li>
+<li>反撃命中成功 → 必中</li>
+<li>反撃命中クリティカル → 2倍固定</li>
+<li>追加ファンブル → 上記の「追加ファンブル」の効果のみ（対象選択なし）</li>
 </ul>
 </section>
 </details>
 
-<!-- クリティカル効果 -->
+<!-- 13. クリティカル効果（通常攻撃） -->
 <details>
 <summary>13. クリティカル効果（通常攻撃）</summary>
 <section>
 <ul>
 <li>必中</li>
 <li>ダメージ2倍</li>
-<li>どちらか選択</li>
+<li>攻撃者（ボス・味方とも）がどちらかを選択する</li>
 </ul>
 </section>
 </details>
 
-<!-- ファンブル効果 -->
+<!-- 14. ファンブル効果（通常攻撃） -->
 <details>
 <summary>14. ファンブル効果（通常攻撃）</summary>
 <section>
@@ -264,11 +267,12 @@ th {
 <li>相手から反撃を受ける</li>
 <li>反撃は命中成功時点で必中</li>
 <li>反撃にも追加判定あり</li>
+<li>追加ファンブルでも対象選択はなく、攻撃者に対してのみ効果が適用される</li>
 </ul>
 </section>
 </details>
 
-<!-- ダメージ処理 -->
+<!-- 15. ダメージ処理 -->
 <details>
 <summary>15. ダメージ処理（共通）</summary>
 <section>
@@ -281,7 +285,7 @@ th {
 </section>
 </details>
 
-<!-- 戦闘の流れ -->
+<!-- 16. 戦闘の流れ -->
 <details>
 <summary>16. 戦闘の流れ（最終版）</summary>
 <section>
