@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>戦闘ルール完全版 v1.5</title>
+<style>
+body {
+    font-family: "Meiryo", sans-serif;
+    line-height: 1.8;
+    padding: 20px;
+    background: #f4f4f4;
+    color: #333;
+}
+h1 {
+    color: #b00000;
+    text-align: center;
+    margin-bottom: 30px;
+}
+details {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+}
+summary {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #b00000;
+}
+section {
+    margin-top: 10px;
+    padding: 10px 15px;
+}
+h2 {
+    color: #b00000;
+    margin-top: 10px;
+}
+h3 {
+    color: #444;
+    margin-top: 10px;
+}
+ul, ol {
+    margin-left: 20px;
+}
+code {
+    background: #eee;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+table, th, td {
+    border: 1px solid #aaa;
+}
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background: #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<h1>戦闘ルール完全版 v1.5</h1>
+
+<!-- 判定方式 -->
+<details open>
+<summary>1. 判定方式（共通）</summary>
+<section>
+<ul>
+<li>使用ダイス：1d100</li>
+<li>1〜5：クリティカル</li>
+<li>6〜技能値：成功</li>
+<li>技能値+1〜95：失敗</li>
+<li>96〜100：ファンブル</li>
+</ul>
+</section>
+</details>
+
+<!-- ターン構造 -->
+<details>
+<summary>2. ターン構造</summary>
+<section>
+<ol>
+<li>ボス行動①</li>
+<li>ボス行動②</li>
+<li>ボス行動③</li>
+<li>A行動</li>
+<li>B行動</li>
+<li>C行動</li>
+<li>D行動</li>
+</ol>
+<p>→ ターン終了 → 次ターンへ</p>
+</section>
+</details>
+
+<!-- ダメージロール -->
+<details>
+<summary>3. ダメージロールのタイミング</summary>
+<section>
+<p><strong>敵味方ともに、回避失敗時に初めてダメージロールを行う。</strong></p>
+</section>
+</details>
+
+<!-- 味方ステータス -->
+<details>
+<summary>4. 味方ステータス（A/B/C/D）</summary>
+<section>
+<ul>
+<li>HP：15</li>
+<li>生体装甲：25</li>
+<li>命中：70</li>
+<li>追加：50</li>
+<li>回避：70</li>
+<li>同ターン中2回目以降の回避に −10累積</li>
+<li>ターン終了時にペナルティ解除</li>
+</ul>
+</section>
+</details>
+
+<!-- ボスステータス -->
+<details>
+<summary>5. ボスステータス</summary>
+<section>
+<ul>
+<li>HP：50</li>
+<li>生体装甲：100</li>
+<li>命中：75</li>
+<li>追加：50</li>
+<li>回避：50</li>
+<li>行動数：3</li>
+<li>ターン2以降：HP+10 / 装甲+5（装甲1以上時）</li>
+</ul>
+</section>
+</details>
+
+<!-- ボスの回避 -->
+<details>
+<summary>6. ボスの回避</summary>
+<section>
+<p>味方攻撃が命中成功したら必ず <code>1d100 ≤ 50</code> で回避判定。</p>
+<ul>
+<li>成功 → ダメージなし</li>
+<li>失敗 → ダメージロールへ</li>
+<li>命中クリティカル「必中」選択時 → 回避不可</li>
+</ul>
+</section>
+</details>
+
+<!-- 特殊無効化 -->
+<details>
+<summary>7. 特殊無効化（味方専用）</summary>
+<section>
+<h3>発動条件</h3>
+<ul>
+<li>生体装甲が攻撃前に5以上残っている</li>
+<li>計算結果で HP が0以下になる攻撃</li>
+</ul>
+
+<h3>効果</h3>
+<ul>
+<li>HPダメージ無効化</li>
+<li>生体装甲は「攻撃前 − 被ダメージ」で減少</li>
+<li>デメリット：全技能 −20 永続</li>
+</ul>
+</section>
+</details>
+
+<!-- 反撃ルール -->
+<details>
+<summary>8. 反撃ルール（完全版）</summary>
+<section>
+<p>反撃は以下の2条件で発生：</p>
+<ul>
+<li>攻撃ファンブル時（96〜100）</li>
+<li>回避クリティカル時（1〜5）</li>
+</ul>
+</section>
+</details>
+
+<!-- 反撃命中 -->
+<details>
+<summary>9. 反撃命中判定</summary>
+<section>
+<ul>
+<li>命中成功 → 必中（回避不可）</li>
+<li>命中クリティカル → 必中＋ダメージ2倍固定</li>
+</ul>
+</section>
+</details>
+
+<!-- 反撃追加 -->
+<details>
+<summary>10. 反撃追加判定</summary>
+<section>
+<h3>追加クリティカル</h3>
+<ul>
+<li>命中成功 → 2倍</li>
+<li>命中クリティカル → 3倍</li>
+</ul>
+
+<h3>追加ファンブル</h3>
+<ul>
+<li>命中成功＋追加ファンブル → 必中解除 → 回避可能化</li>
+<li>命中クリティカル＋追加ファンブル → 必中維持（回避不可）だが2倍消失</li>
+</ul>
+</section>
+</details>
+
+<!-- 反撃時の回避 -->
+<details>
+<summary>11. 反撃時の回避</summary>
+<section>
+<table>
+<tr><th>状態</th><th>回避可否</th><th>ダメージ倍率</th></tr>
+<tr><td>命中成功</td><td>不可</td><td>通常</td></tr>
+<tr><td>命中クリティカル</td><td>不可</td><td>2倍</td></tr>
+<tr><td>命中成功＋追加クリティカル</td><td>不可</td><td>2倍</td></tr>
+<tr><td>命中クリティカル＋追加クリティカル</td><td>不可</td><td>3倍</td></tr>
+<tr><td>命中成功＋追加ファンブル</td><td>可能</td><td>通常</td></tr>
+<tr><td>命中クリティカル＋追加ファンブル</td><td>不可</td><td>通常（2倍消失）</td></tr>
+</table>
+</section>
+</details>
+
+<!-- 回避クリティカル -->
+<details>
+<summary>12. 回避クリティカル（反撃発生）</summary>
+<section>
+<ul>
+<li>回避成功（ダメージ0）</li>
+<li>反撃発生</li>
+<li>反撃命中成功＝必中</li>
+<li>反撃追加判定は通常どおり適用</li>
+</ul>
+</section>
+</details>
+
+<!-- クリティカル効果 -->
+<details>
+<summary>13. クリティカル効果（通常攻撃）</summary>
+<section>
+<ul>
+<li>必中</li>
+<li>ダメージ2倍</li>
+<li>どちらか選択</li>
+</ul>
+</section>
+</details>
+
+<!-- ファンブル効果 -->
+<details>
+<summary>14. ファンブル効果（通常攻撃）</summary>
+<section>
+<ul>
+<li>相手から反撃を受ける</li>
+<li>反撃は命中成功時点で必中</li>
+<li>反撃にも追加判定あり</li>
+</ul>
+</section>
+</details>
+
+<!-- ダメージ処理 -->
+<details>
+<summary>15. ダメージ処理（共通）</summary>
+<section>
+<ul>
+<li>ダメージは攻撃前の生体装甲で受ける</li>
+<li>生体装甲で受けきれない分が HPへ</li>
+<li>生体装甲は0未満にならない</li>
+<li>味方のみ特殊無効化あり</li>
+</ul>
+</section>
+</details>
+
+<!-- 戦闘の流れ -->
+<details>
+<summary>16. 戦闘の流れ（最終版）</summary>
+<section>
+<ol>
+<li>ボス行動①</li>
+<li>ボス行動②</li>
+<li>ボス行動③</li>
+<li>A行動</li>
+<li>B行動</li>
+<li>C行動</li>
+<li>D行動</li>
+</ol>
+<p>→ ターン終了 → 次ターンへ</p>
+</section>
+</details>
+
+</body>
+</html>
