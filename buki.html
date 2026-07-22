@@ -18,6 +18,163 @@
 
 <div class="container">
   <h1>🔫 武器カテゴリ一覧</h1>
+<h1>🔫 武器カテゴリ一覧</h1>
+
+<!-- カテゴリ切り替えボタン -->
+<div class="weapon-tabs">
+  <button onclick="showCategory('pistol')">ピストル系</button>
+  <button onclick="showCategory('special')">特殊ピストル系</button>
+  <button onclick="showCategory('smg')">サブマシンガン系</button>
+  <button onclick="showCategory('rifle')">ライフル系</button>
+  <button onclick="showCategory('lmg')">ライトマシンガン系</button>
+  <button onclick="showCategory('shotgun')">ショットガン系</button>
+  <button onclick="showCategory('cannon')">キャノン系</button>
+</div>
+
+<!-- ========================= -->
+<!--  ピストル系               -->
+<!-- ========================= -->
+<div class="weapon-category" id="pistol">
+  <h2>🔸 ピストル系</h2>
+
+  <div class="card">
+    <h3>《Rピストル》</h3>
+    <p><strong>種別：</strong>護身用ピストル(民間用)</p>
+    <p><strong>装弾：</strong>6発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D3MP消費<br>
+      ・1ターンに1〜1D3発発射可能
+    </p>
+    <p><strong>威力：</strong>1D6</p>
+  </div>
+
+  <div class="card">
+    <h3>《スタンガン》</h3>
+    <p><strong>装弾：</strong>10発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D3+1MP消費<br>
+      ・1ターンに1〜1D4発発射可能<br>
+      ・命中数×10%でスタン
+    </p>
+    <p><strong>威力：</strong>1D3+1</p>
+  </div>
+</div>
+
+<!-- ========================= -->
+<!--  特殊ピストル系           -->
+<!-- ========================= -->
+<div class="weapon-category" id="special" style="display:none;">
+  <h2>🔸 特殊ピストル系</h2>
+
+  <div class="card">
+    <h3>《バイパー》</h3>
+    <p><strong>装弾：</strong>15発</p>
+    <p><strong>効果：</strong><br>
+      ・HP1D15消費で即リロード<br>
+      ・1ターンに1〜1D3発発射可能
+    </p>
+    <p><strong>威力：</strong>1D10+1D3</p>
+  </div>
+
+  <div class="card">
+    <h3>《フランケン》</h3>
+    <p><strong>装弾：</strong>3発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時に能力強化 or HP回復<br>
+      ・1ターンに1D3発発射可能
+    </p>
+    <p><strong>威力：</strong>1D20 / 1D2</p>
+  </div>
+</div>
+
+<!-- ========================= -->
+<!--  サブマシンガン系         -->
+<!-- ========================= -->
+<div class="weapon-category" id="smg" style="display:none;">
+  <h2>🔸 サブマシンガン系</h2>
+
+  <div class="card">
+    <h3>《パルスガン(民間用)》</h3>
+    <p><strong>装弾：</strong>30発</p>
+    <p><strong>効果：</strong><br>
+      ・1D2ターン＋2D5MPでリロード<br>
+      ・2〜1D残弾発射可能
+    </p>
+    <p><strong>威力：</strong>1D3</p>
+  </div>
+</div>
+
+<!-- ========================= -->
+<!--  ライフル系               -->
+<!-- ========================= -->
+<div class="weapon-category" id="rifle" style="display:none;">
+  <h2>🔸 ライフル系</h2>
+
+  <div class="card">
+    <h3>《チャージライフル(民間用)》</h3>
+    <p><strong>装弾：</strong>10発</p>
+    <p><strong>効果：</strong><br>
+      ・2ターンチャージで威力2倍
+    </p>
+    <p><strong>威力：</strong>1D18</p>
+  </div>
+</div>
+
+<!-- ========================= -->
+<!--  ライトマシンガン系       -->
+<!-- ========================= -->
+<div class="weapon-category" id="lmg" style="display:none;">
+  <h2>🔸 ライトマシンガン系</h2>
+
+  <div class="card">
+    <h3>《ビームライフル》</h3>
+    <p><strong>装弾：</strong>20発</p>
+    <p><strong>効果：</strong><br>
+      ・1〜1D残弾発射可能
+    </p>
+    <p><strong>威力：</strong>1D12</p>
+  </div>
+</div>
+
+<!-- ========================= -->
+<!--  ショットガン系           -->
+<!-- ========================= -->
+<div class="weapon-category" id="shotgun" style="display:none;">
+  <h2>🔸 ショットガン系</h2>
+
+  <div class="card">
+    <h3>《レーザーショット》</h3>
+    <p><strong>装弾：</strong>4発</p>
+    <p><strong>効果：</strong><br>
+      ・命中後、次のダメージが1D2倍化
+    </p>
+    <p><strong>威力：</strong>1D18 / 1D9</p>
+  </div>
+</div>
+
+<!-- ========================= -->
+<!--  キャノン系               -->
+<!-- ========================= -->
+<div class="weapon-category" id="cannon" style="display:none;">
+  <h2>🔸 キャノン系</h2>
+
+  <div class="card">
+    <h3>《照射砲(軍事用)》</h3>
+    <p><strong>装弾：</strong>1発</p>
+    <p><strong>効果：</strong><br>
+      ・3ターンチャージで全体攻撃
+    </p>
+    <p><strong>威力：</strong>1D40 / 1D4</p>
+  </div>
+</div>
+
+<script>
+function showCategory(id) {
+  const cats = document.querySelectorAll('.weapon-category');
+  cats.forEach(c => c.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+</script>
 
   <!-- ========================= -->
   <!--  ピストルカテゴリ        -->
