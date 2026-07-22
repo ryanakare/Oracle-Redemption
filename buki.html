@@ -17,9 +17,13 @@
 </nav>
 
 <div class="container">
-  <h1>🔫 武器データ一覧</h1>
+  <h1>🔫 武器カテゴリ一覧</h1>
 
-  <!-- Rピストル -->
+  <!-- ========================= -->
+  <!--  ピストルカテゴリ        -->
+  <!-- ========================= -->
+  <h2>🔸 ピストル系</h2>
+
   <div class="card">
     <h3>《Rピストル》</h3>
     <p><strong>種別：</strong>護身用ピストル(民間用)</p>
@@ -31,19 +35,17 @@
     <p><strong>威力：</strong>1D6</p>
   </div>
 
-  <!-- スタンガン -->
   <div class="card">
     <h3>《スタンガン》</h3>
     <p><strong>装弾：</strong>10発</p>
     <p><strong>効果：</strong><br>
       ・リロード時、1ターン消費と1D3+1MP消費<br>
       ・1ターンに1〜1D4発発射可能<br>
-      ・命中数×10%の確率で1ターンスタン
+      ・命中数×10%で1ターンスタン
     </p>
     <p><strong>威力：</strong>1D3+1</p>
   </div>
 
-  <!-- チャージバースト -->
   <div class="card">
     <h3>《チャージバースト》</h3>
     <p><strong>装弾：</strong>8発</p>
@@ -55,56 +57,6 @@
     <p><strong>威力：</strong>1D6+1</p>
   </div>
 
-  <!-- バイパー -->
-  <div class="card">
-    <h3>《バイパー》</h3>
-    <p><strong>装弾：</strong>15発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、HP1D15消費で即リロード<br>
-      ・1ターンに1〜1D3発発射可能
-    </p>
-    <p><strong>威力：</strong>1D10+1D3</p>
-  </div>
-
-  <!-- フランケン -->
-  <div class="card">
-    <h3>《フランケン》</h3>
-    <p><strong>装弾：</strong>3発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費と1D6MP消費<br>
-      ・リロード時、以下のいずれかを得る：<br>
-　　　HP2D5回復 / DEX1D10アップ / STR1D10アップ<br>
-      ・1ターンに1D3発発射可能
-    </p>
-    <p><strong>威力：</strong>1D20 / 1D2</p>
-  </div>
-
-  <!-- レッドライン -->
-  <div class="card">
-    <h3>《レッドライン》</h3>
-    <p><strong>装弾：</strong>15発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費と1D10MP消費<br>
-      ・HPが一桁になると以下を選択：<br>
-　　　連射数最大値固定 / 威力1D2倍化<br>
-      ・1ターンに1〜1D5発発射可能
-    </p>
-    <p><strong>威力：</strong>1D9</p>
-  </div>
-
-  <!-- モンスター -->
-  <div class="card">
-    <h3>《モンスター》</h3>
-    <p><strong>装弾：</strong>12発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費と4D2MP消費<br>
-      ・1ターンに4発発射可能<br>
-      ・4体同時攻撃可能（単体の場合1D4発のみ）
-    </p>
-    <p><strong>威力：</strong>1D8</p>
-  </div>
-
-  <!-- 護身用ピストル(改造銃) -->
   <div class="card">
     <h3>《護身用ピストル(改造銃)》</h3>
     <p><strong>装弾：</strong>6発</p>
@@ -115,7 +67,83 @@
     <p><strong>威力：</strong>1D6 + (1D3-1)</p>
   </div>
 
+  <!-- ========================= -->
+  <!--  特殊ピストルカテゴリ    -->
+  <!-- ========================= -->
+  <h2>🔸 特殊ピストル系</h2>
+
+  <div class="card">
+    <h3>《バイパー》</h3>
+    <p><strong>装弾：</strong>15発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、HP1D15消費で即リロード<br>
+      ・1ターンに1〜1D3発発射可能
+    </p>
+    <p><strong>威力：</strong>1D10+1D3</p>
+  </div>
+
+  <div class="card">
+    <h3>《フランケン》</h3>
+    <p><strong>装弾：</strong>3発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D6MP消費<br>
+      ・リロード時に以下を得る：<br>
+      HP2D5回復 / DEX1D10アップ / STR1D10アップ<br>
+      ・1ターンに1D3発発射可能
+    </p>
+    <p><strong>威力：</strong>1D20 / 1D2</p>
+  </div>
+
+  <div class="card">
+    <h3>《レッドライン》</h3>
+    <p><strong>装弾：</strong>15発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D10MP消費<br>
+      ・HPが一桁で以下を選択：<br>
+      連射数最大固定 / 威力1D2倍化<br>
+      ・1ターンに1〜1D5発発射可能
+    </p>
+    <p><strong>威力：</strong>1D9</p>
+  </div>
+
+  <div class="card">
+    <h3>《モンスター》</h3>
+    <p><strong>装弾：</strong>12発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と4D2MP消費<br>
+      ・1ターンに4発発射可能<br>
+      ・4体同時攻撃可能（単体は1D4発）
+    </p>
+    <p><strong>威力：</strong>1D8</p>
+  </div>
+
+  <!-- ========================= -->
+  <!--  サブマシンガンカテゴリ  -->
+  <!-- ========================= -->
+  <h2>🔸 サブマシンガン系</h2>
+
+  <div class="card">
+    <h3>《パルスガン(民間用)》</h3>
+    <p><strong>装弾：</strong>30発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時に1D2ターン消費と2D5MP消費<br>
+      ・1ターンに2〜1D残弾発射可能
+    </p>
+    <p><strong>威力：</strong>1D3</p>
+  </div>
+
+  <div class="card">
+    <h3>《強化型パルスガン(軍事用)》</h3>
+    <p><strong>装弾：</strong>30発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時に2ターン消費と10MP消費<br>
+      ・1ターンに2〜1D残弾発射可能
+    </p>
+    <p><strong>威力：</strong>1D6</p>
+  </div>
+
 </div>
+
 
   <footer>© Oracle Redemption Project</footer>
 </body>
