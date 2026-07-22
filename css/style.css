@@ -71,4 +71,7 @@ footer {
   text-align: center;
   padding: 20px;
   color: #bba8d8;
-  font
+  font-size: 13px;
+  margin-top: 40px;
+  text-shadow: 0 0 6px rgba(150,120,200,0.4);
+}
