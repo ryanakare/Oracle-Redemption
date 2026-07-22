@@ -71,36 +71,4 @@ footer {
   text-align: center;
   padding: 20px;
   color: #bba8d8;
-  font-size: 13px;
-  margin-top: 40px;
-  text-shadow: 0 0 6px rgba(150,120,200,0.4);
-}
-
-/* ====== カード（能力・メーカー一覧などに使える） ====== */
-.card {
-  background: rgba(255,255,255,0.08);
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  backdrop-filter: blur(6px);
-}
-
-.card h3 {
-  margin-top: 0;
-  font-size: 20px;
-  border-left: 4px solid #c7a6ff;
-  padding-left: 10px;
-}
-
-.card p {
-  margin: 10px 0;
-}
-
-/* ====== ギャラリー画像 ====== */
-.gallery-img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  margin-bottom: 20px;
-}
+  font
