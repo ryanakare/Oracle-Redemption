@@ -1,0 +1,100 @@
+<div class="container">
+  <h1>🔫 武器データ一覧</h1>
+
+  <!-- Rピストル -->
+  <div class="card">
+    <h3>《Rピストル》</h3>
+    <p><strong>種別：</strong>護身用ピストル(民間用)</p>
+    <p><strong>装弾：</strong>6発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D3MP消費<br>
+      ・1ターンに1〜1D3発発射可能
+    </p>
+    <p><strong>威力：</strong>1D6</p>
+  </div>
+
+  <!-- スタンガン -->
+  <div class="card">
+    <h3>《スタンガン》</h3>
+    <p><strong>装弾：</strong>10発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D3+1MP消費<br>
+      ・1ターンに1〜1D4発発射可能<br>
+      ・命中数×10%の確率で1ターンスタン
+    </p>
+    <p><strong>威力：</strong>1D3+1</p>
+  </div>
+
+  <!-- チャージバースト -->
+  <div class="card">
+    <h3>《チャージバースト》</h3>
+    <p><strong>装弾：</strong>8発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D6MP消費<br>
+      ・1ターンに1発発射可能<br>
+      ・構え状態でチャージすると4連射
+    </p>
+    <p><strong>威力：</strong>1D6+1</p>
+  </div>
+
+  <!-- バイパー -->
+  <div class="card">
+    <h3>《バイパー》</h3>
+    <p><strong>装弾：</strong>15発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、HP1D15消費で即リロード<br>
+      ・1ターンに1〜1D3発発射可能
+    </p>
+    <p><strong>威力：</strong>1D10+1D3</p>
+  </div>
+
+  <!-- フランケン -->
+  <div class="card">
+    <h3>《フランケン》</h3>
+    <p><strong>装弾：</strong>3発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D6MP消費<br>
+      ・リロード時、以下のいずれかを得る：<br>
+　　　HP2D5回復 / DEX1D10アップ / STR1D10アップ<br>
+      ・1ターンに1D3発発射可能
+    </p>
+    <p><strong>威力：</strong>1D20 / 1D2</p>
+  </div>
+
+  <!-- レッドライン -->
+  <div class="card">
+    <h3>《レッドライン》</h3>
+    <p><strong>装弾：</strong>15発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D10MP消費<br>
+      ・HPが一桁になると以下を選択：<br>
+　　　連射数最大値固定 / 威力1D2倍化<br>
+      ・1ターンに1〜1D5発発射可能
+    </p>
+    <p><strong>威力：</strong>1D9</p>
+  </div>
+
+  <!-- モンスター -->
+  <div class="card">
+    <h3>《モンスター》</h3>
+    <p><strong>装弾：</strong>12発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と4D2MP消費<br>
+      ・1ターンに4発発射可能<br>
+      ・4体同時攻撃可能（単体の場合1D4発のみ）
+    </p>
+    <p><strong>威力：</strong>1D8</p>
+  </div>
+
+  <!-- 護身用ピストル(改造銃) -->
+  <div class="card">
+    <h3>《護身用ピストル(改造銃)》</h3>
+    <p><strong>装弾：</strong>6発</p>
+    <p><strong>効果：</strong><br>
+      ・リロード時、1ターン消費と1D3MP消費<br>
+      ・1ターンに1D3-1発発射可能（0で詰まり）
+    </p>
+    <p><strong>威力：</strong>1D6 + (1D3-1)</p>
+  </div>
+
+</div>
