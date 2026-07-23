@@ -88,10 +88,14 @@ function showCategory(id) {
   ancientBox.style.display = 'none';
   document.querySelector('.ancient-toggle').textContent = '▶ 古代武器';
 
+  // ★ 現代武器トグルを開く（ここが重要）
+  const modernBox = document.getElementById('modern-weapons');
+  modernBox.style.display = 'block';
+  document.querySelector('.group-toggle').textContent = '▼ 現代武器';
+
   // 現代カテゴリを表示
   document.getElementById(id).style.display = 'block';
 }
-
 
 </script>
 
