@@ -79,6 +79,8 @@ function toggleGroup() {
 function showCategory(id) {
   const cats = document.querySelectorAll('.weapon-category');
   cats.forEach(c => c.style.display = 'none');
+   const ancientCats = document.querySelectorAll('.ancient-category');
+  ancientCats.forEach(c => c.style.display = 'none');
   document.getElementById(id).style.display = 'block';
 }
 </script>
