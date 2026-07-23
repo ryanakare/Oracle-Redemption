@@ -17,7 +17,7 @@
 </nav>
 
 <div class="container">
-  <h1>🔫 武器カテゴリ一覧</h1>
+<h1>🔫 武器カテゴリ一覧</h1>
 
 <!-- ▼▼▼ 現代武器：折りたたみ ▼▼▼ -->
 <div class="weapon-group">
@@ -25,7 +25,7 @@
 
   <div id="modern-weapons" style="display:none; margin-top:15px;">
 
-    <!-- ▼▼▼ 現代武器カテゴリ切り替えボタン ▼▼▼ -->
+    <!-- カテゴリ切り替えボタン -->
     <div class="weapon-tabs">
       <button onclick="showCategory('pistol')">ピストル系</button>
       <button onclick="showCategory('special')">特殊ピストル系</button>
@@ -36,18 +36,10 @@
       <button onclick="showCategory('cannon')">キャノン系</button>
     </div>
 
-    <!-- ▼▼▼ 現代武器カテゴリ ▼▼▼ -->
-    <div class="weapon-category" id="pistol">…ピストル系の中身…</div>
-    <div class="weapon-category" id="special" style="display:none;">…特殊ピストル系…</div>
-    <div class="weapon-category" id="smg" style="display:none;">…サブマシンガン系…</div>
-    <div class="weapon-category" id="rifle" style="display:none;">…ライフル系…</div>
-    <div class="weapon-category" id="lmg" style="display:none;">…ライトマシンガン系…</div>
-    <div class="weapon-category" id="shotgun" style="display:none;">…ショットガン系…</div>
-    <div class="weapon-category" id="cannon" style="display:none;">…キャノン系…</div>
-
-  </div> <!-- ← ここで modern-weapons を閉じる -->
+    <!-- ▼▼▼ ここに各カテゴリの weapon-category が入る ▼▼▼ -->
+    <!-- 稜也が既に作った pistol / special / smg / rifle / lmg / shotgun / cannon をそのまま使える -->
+  </div>
 </div>
-
 
 <script>
 function toggleGroup() {
@@ -63,14 +55,22 @@ function toggleGroup() {
 }
 
 function showCategory(id) {
-  // ★ 修正ポイント：modern-weapons の中だけを対象にする
-  const cats = document.querySelectorAll('#modern-weapons .weapon-category');
+  const cats = document.querySelectorAll('.weapon-category');
   cats.forEach(c => c.style.display = 'none');
   document.getElementById(id).style.display = 'block';
 }
 </script>
-
-
+  
+<!-- カテゴリ切り替えボタン -->
+<div class="weapon-tabs">
+  <button onclick="showCategory('pistol')">ピストル系</button>
+  <button onclick="showCategory('special')">特殊ピストル系</button>
+  <button onclick="showCategory('smg')">サブマシンガン系</button>
+  <button onclick="showCategory('rifle')">ライフル系</button>
+  <button onclick="showCategory('lmg')">ライトマシンガン系</button>
+  <button onclick="showCategory('shotgun')">ショットガン系</button>
+  <button onclick="showCategory('cannon')">キャノン系</button>
+</div>
 
 <!-- ========================= -->
 <!--  ピストル系               -->
@@ -303,6 +303,9 @@ function showCategory(id) {
 <!-- ========================= -->
 <!--  ショットガン系           -->
 <!-- ========================= -->
+<!-- ========================= -->
+<!--  ショットガン系           -->
+<!-- ========================= -->
 <div class="weapon-category" id="shotgun" style="display:none;">
   <h2>🔸 ショットガン系</h2>
 
@@ -359,6 +362,9 @@ function showCategory(id) {
 
 </div>
 
+<!-- ========================= -->
+<!--  キャノン系               -->
+<!-- ========================= -->
 <!-- ========================= -->
 <!--  キャノン系               -->
 <!-- ========================= -->
