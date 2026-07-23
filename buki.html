@@ -39,6 +39,26 @@
     <!-- ▼▼▼ ここに各カテゴリの weapon-category が入る ▼▼▼ -->
     <!-- 稜也が既に作った pistol / special / smg / rifle / lmg / shotgun / cannon をそのまま使える -->
   </div>
+
+<!-- ▼▼▼ 古代武器：折りたたみ ▼▼▼ -->
+<div class="weapon-group">
+  <button class="ancient-toggle" onclick="toggleAncient()">▶ 古代武器</button>
+
+  <div id="ancient-weapons" style="display:none; margin-top:15px;">
+
+    <!-- 古代武器カテゴリ切り替えボタン -->
+    <div class="weapon-tabs">
+      <button onclick="showAncient('ancient_pistol')">古代ピストル</button>
+      <button onclick="showAncient('ancient_special')">古代特殊ピストル</button>
+      <button onclick="showAncient('ancient_smg')">古代サブマシンガン</button>
+      <button onclick="showAncient('ancient_shotgun')">古代ショットガン</button>
+      <button onclick="showAncient('ancient_double')">古代ダブルバレル</button>
+      <button onclick="showAncient('ancient_assault')">古代アサルトライフル</button>
+      <button onclick="showAncient('ancient_sniper')">古代スナイパーライフル</button>
+      <button onclick="showAncient('ancient_lmg')">古代ライトマシンガン</button>
+      <button onclick="showAncient('ancient_bazooka')">古代バズーカ</button>
+      <button onclick="showAncient('ancient_grenade')">古代グレポン</button>
+    </div>  
 </div>
 
 <script>
