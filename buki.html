@@ -77,14 +77,18 @@ function toggleGroup() {
 }
 
 function showCategory(id) {
-  // 現代カテゴリを消す
-  const cats = document.querySelectorAll('.weapon-category');
-  cats.forEach(c => c.style.display = 'none');
- 
+  // 現代カテゴリを全部消す
+  const modernCats = document.querySelectorAll('.weapon-category');
+  modernCats.forEach(c => c.style.display = 'none');
+
+  // ★ 古代カテゴリも全部消す（追加）
+  const ancientCats = document.querySelectorAll('.ancient-category');
+  ancientCats.forEach(c => c.style.display = 'none');
 
   // 現代カテゴリを表示
   document.getElementById(id).style.display = 'block';
 }
+
 </script>
 
 <script>
