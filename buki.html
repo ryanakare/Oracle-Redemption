@@ -68,26 +68,6 @@ function showCategory(id) {
 }
 </script>
 
-<script>
-function toggleGroup() {
-  const box = document.getElementById('modern-weapons');
-  const btn = document.querySelector('.group-toggle');
-  if (box.style.display === 'none') {
-    box.style.display = 'block';
-    btn.textContent = '▼ 現代武器';
-  } else {
-    box.style.display = 'none';
-    btn.textContent = '▶ 現代武器';
-  }
-}
-
-function showCategory(id) {
-  const cats = document.querySelectorAll('.weapon-category');
-  cats.forEach(c => c.style.display = 'none');
-  document.getElementById(id).style.display = 'block';
-}
-</script>
-
 
 <!-- ========================= -->
 <!--  ピストル系               -->
