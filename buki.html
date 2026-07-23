@@ -60,7 +60,17 @@ function showCategory(id) {
   document.getElementById(id).style.display = 'block';
 }
 </script>
-  
+
+  <!-- ▼▼▼ 古代武器：折りたたみ ▼▼▼ -->
+<div class="weapon-group">
+  <button class="group-toggle" onclick="toggleAncient()">▶ 古代武器（ピストル）</button>
+
+  <div id="ancient-weapons" style="display:none; margin-top:15px;">
+
+    <!-- 古代ピストルカテゴリボタン（単独） -->
+    <div class="weapon-tabs">
+      <button onclick="showCategory('ancient_pistol')">古代ピストル</button>
+    </div>
 <!-- ========================= -->
 <!--  ピストル系               -->
 <!-- ========================= -->
@@ -379,17 +389,6 @@ function showCategory(id) {
   </div>
 
 </div>
-
-<!-- ▼▼▼ 古代武器：折りたたみ ▼▼▼ -->
-<div class="weapon-group">
-  <button class="group-toggle" onclick="toggleAncient()">▶ 古代武器（ピストル）</button>
-
-  <div id="ancient-weapons" style="display:none; margin-top:15px;">
-
-    <!-- 古代ピストルカテゴリボタン（単独） -->
-    <div class="weapon-tabs">
-      <button onclick="showCategory('ancient_pistol')">古代ピストル</button>
-    </div>
 
     <!-- ========================= -->
     <!--  古代ピストルカテゴリ     -->
