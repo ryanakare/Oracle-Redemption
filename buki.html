@@ -17,9 +17,8 @@
 </nav>
 
 <div class="container">
-<h1>🔫 武器カテゴリ一覧</h1>
+  <h1>🔫 武器カテゴリ一覧</h1>
 
-<!-- ▼▼▼ 現代武器：折りたたみ ▼▼▼ -->
 <div class="weapon-group">
   <button class="group-toggle" onclick="toggleGroup()">▶ 現代武器</button>
 
@@ -48,25 +47,6 @@
   </div>
 </div>
 
-<script>
-function toggleGroup() {
-  const box = document.getElementById('modern-weapons');
-  const btn = document.querySelector('.group-toggle');
-  if (box.style.display === 'none') {
-    box.style.display = 'block';
-    btn.textContent = '▼ 現代武器';
-  } else {
-    box.style.display = 'none';
-    btn.textContent = '▶ 現代武器';
-  }
-}
-
-function showCategory(id) {
-  const cats = document.querySelectorAll('.weapon-category');
-  cats.forEach(c => c.style.display = 'none');
-  document.getElementById(id).style.display = 'block';
-}
-</script>
 
 <!-- ========================= -->
 <!--  ピストル系               -->
@@ -295,7 +275,7 @@ function showCategory(id) {
 </div>
  
 </div>
-  
+
 <!-- ========================= -->
 <!--  ショットガン系           -->
 <!-- ========================= -->
@@ -384,8 +364,9 @@ function showCategory(id) {
     </p>
     <p><strong>威力：</strong>1D25</p>
   </div>
-  
+
 </div>
+
 
 <script>
 function showCategory(id) {
@@ -395,12 +376,6 @@ function showCategory(id) {
 }
 </script>
 
-function showAncient(id) {
-  const cats = document.querySelectorAll('.ancient-category');
-  cats.forEach(c => c.style.display = 'none');
-  document.getElementById(id).style.display = 'block';
-}
-</script>  
   <footer>© Oracle Redemption Project</footer>
 </body>
 </html>
