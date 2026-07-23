@@ -104,10 +104,21 @@ function toggleAncient() {
 }
 
 function showAncient(id) {
-  const cats = document.querySelectorAll('.ancient-category');
-  cats.forEach(c => c.style.display = 'none');
+  // 古代カテゴリを全部消す
+  document.querySelectorAll('.ancient-category').forEach(c => c.style.display = 'none');
+
+  // ★ 現代カテゴリを全部消す（重要）
+  document.querySelectorAll('.weapon-category').forEach(c => c.style.display = 'none');
+
+  // ★ 現代武器トグル自体を閉じる（これが最重要）
+  const modernBox = document.getElementById('modern-weapons');
+  modernBox.style.display = 'none';
+  document.querySelector('.group-toggle').textContent = '▶ 現代武器';
+
+  // 古代カテゴリを表示
   document.getElementById(id).style.display = 'block';
 }
+
 </script>  
 <!-- ========================= -->
 <!--  ピストル系               -->
