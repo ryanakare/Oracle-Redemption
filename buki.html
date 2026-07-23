@@ -62,11 +62,13 @@ function toggleGroup() {
 }
 
 function showCategory(id) {
+  // ★ 修正ポイント：modern-weapons の中だけを対象にする
   const cats = document.querySelectorAll('#modern-weapons .weapon-category');
   cats.forEach(c => c.style.display = 'none');
   document.getElementById(id).style.display = 'block';
 }
 </script>
+
 
 
 <!-- ========================= -->
