@@ -395,54 +395,6 @@ function showCategory(id) {
 }
 </script>
 
-<!-- ▼▼▼ 古代武器：折りたたみ ▼▼▼ -->
-<div class="weapon-group">
-  <button class="ancient-toggle" onclick="toggleAncient()">▶ 古代武器</button>
-
-  <div id="ancient-weapons" style="display:none; margin-top:15px;">
-
-    <!-- 古代武器カテゴリ切り替えボタン -->
-    <div class="weapon-tabs">
-      <button onclick="showAncient('ancient_pistol')">古代ピストル</button>
-      <button onclick="showAncient('ancient_special')">古代特殊ピストル</button>
-      <button onclick="showAncient('ancient_smg')">古代サブマシンガン</button>
-      <button onclick="showAncient('ancient_shotgun')">古代ショットガン</button>
-      <button onclick="showAncient('ancient_double')">古代ダブルバレル</button>
-      <button onclick="showAncient('ancient_assault')">古代アサルトライフル</button>
-      <button onclick="showAncient('ancient_sniper')">古代スナイパーライフル</button>
-      <button onclick="showAncient('ancient_lmg')">古代ライトマシンガン</button>
-      <button onclick="showAncient('ancient_bazooka')">古代バズーカ</button>
-      <button onclick="showAncient('ancient_grenade')">古代グレポン</button>
-    </div>
-
-    <!-- ▼▼▼ 古代武器カテゴリ（中身は後で入れる） ▼▼▼ -->
-    <div class="ancient-category" id="ancient_pistol" style="display:none;"></div>
-    <div class="ancient-category" id="ancient_special" style="display:none;"></div>
-    <div class="ancient-category" id="ancient_smg" style="display:none;"></div>
-    <div class="ancient-category" id="ancient_shotgun" style="display:none;"></div>
-    <div class="ancient-category" id="ancient_double" style="display:none;"></div>
-    <div class="ancient-category" id="ancient_assault" style="display:none;"></div>
-    <div class="ancient-category" id="ancient_sniper" style="display:none;"></div>
-    <div class="ancient-category" id="ancient_lmg" style="display:none;"></div>
-    <div class="ancient-category" id="ancient_bazooka" style="display:none;"></div>
-    <div class="ancient-category" id="ancient_grenade" style="display:none;"></div>
-
-  </div>
-</div>
-
-<script>
-function toggleAncient() {
-  const box = document.getElementById('ancient-weapons');
-  const btn = document.querySelector('.ancient-toggle');
-  if (box.style.display === 'none') {
-    box.style.display = 'block';
-    btn.textContent = '▼ 古代武器';
-  } else {
-    box.style.display = 'none';
-    btn.textContent = '▶ 古代武器';
-  }
-}
-
 function showAncient(id) {
   const cats = document.querySelectorAll('.ancient-category');
   cats.forEach(c => c.style.display = 'none');
