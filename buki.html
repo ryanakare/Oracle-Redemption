@@ -17,18 +17,57 @@
 </nav>
 
 <div class="container">
-  <h1>🔫 武器カテゴリ一覧</h1>
+<h1>🔫 武器カテゴリ一覧</h1>
 
-<!-- カテゴリ切り替えボタン -->
-<div class="weapon-tabs">
-  <button onclick="showCategory('pistol')">ピストル系</button>
-  <button onclick="showCategory('special')">特殊ピストル系</button>
-  <button onclick="showCategory('smg')">サブマシンガン系</button>
-  <button onclick="showCategory('rifle')">ライフル系</button>
-  <button onclick="showCategory('lmg')">ライトマシンガン系</button>
-  <button onclick="showCategory('shotgun')">ショットガン系</button>
-  <button onclick="showCategory('cannon')">キャノン系</button>
+<!-- ▼▼▼ 現代武器：折りたたみ ▼▼▼ -->
+<div class="weapon-group">
+  <button class="group-toggle" onclick="toggleGroup()">▶ 現代武器</button>
+
+  <div id="modern-weapons" style="display:none; margin-top:15px;">
+
+    <div class="weapon-tabs">
+      <button onclick="showCategory('pistol')">ピストル系</button>
+      <button onclick="showCategory('special')">特殊ピストル系</button>
+      <button onclick="showCategory('smg')">サブマシンガン系</button>
+      <button onclick="showCategory('rifle')">ライフル系</button>
+      <button onclick="showCategory('lmg')">ライトマシンガン系</button>
+      <button onclick="showCategory('shotgun')">ショットガン系</button>
+      <button onclick="showCategory('cannon')">キャノン系</button>
+    </div>
+
+    <!-- ▼▼▼ ここにカテゴリを入れる ▼▼▼ -->
+    <div class="weapon-category" id="pistol">…</div>
+    <div class="weapon-category" id="special" style="display:none;">…</div>
+    <div class="weapon-category" id="smg" style="display:none;">…</div>
+    <div class="weapon-category" id="rifle" style="display:none;">…</div>
+    <div class="weapon-category" id="lmg" style="display:none;">…</div>
+    <div class="weapon-category" id="shotgun" style="display:none;">…</div>
+    <div class="weapon-category" id="cannon" style="display:none;">…</div>
+
+  </div>
 </div>
+
+
+<script>
+function toggleGroup() {
+  const box = document.getElementById('modern-weapons');
+  const btn = document.querySelector('.group-toggle');
+  if (box.style.display === 'none') {
+    box.style.display = 'block';
+    btn.textContent = '▼ 現代武器';
+  } else {
+    box.style.display = 'none';
+    btn.textContent = '▶ 現代武器';
+  }
+}
+
+function showCategory(id) {
+  const cats = document.querySelectorAll('.weapon-category');
+  cats.forEach(c => c.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+</script>
+
 
 <!-- ========================= -->
 <!--  ピストル系               -->
