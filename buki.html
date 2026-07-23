@@ -94,15 +94,15 @@ function showCategory(id) {
   // 現代カテゴリを全部消す
   document.querySelectorAll('.weapon-category').forEach(c => c.style.display = 'none');
 
-  // ★ 古代カテゴリを全部消す（showAncient の逆）
+  // 古代カテゴリを全部消す
   document.querySelectorAll('.ancient-category').forEach(c => c.style.display = 'none');
 
-  // ★ 古代武器トグル自体を閉じる（showAncient の逆）
+  // 古代武器トグルを閉じる
   const ancientBox = document.getElementById('ancient-weapons');
   ancientBox.style.display = 'none';
   document.querySelector('.ancient-toggle').textContent = '▶ 古代武器';
 
-  // ★ 現代武器トグルを開く（ここが重要）
+  // 現代武器トグルを開く
   const modernBox = document.getElementById('modern-weapons');
   modernBox.style.display = 'block';
   document.querySelector('.group-toggle').textContent = '▼ 現代武器';
