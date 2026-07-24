@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>現代武器一覧</title>
+  <style>
+    .weapon-category {
+      margin-bottom: 2rem;
+    }
+    .weapon-category h2 {
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #ccc;
+    }
+    .card {
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin: 6px 0;
+      background: #111;
+      color: #eee;
+      font-size: 0.9rem;
+    }
+    .card h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+    }
+    .card p {
+      margin: 2px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- カテゴリごとの表示領域 -->
+  <section class="weapon-category" id="pistol">
+    <h2>ピストル</h2>
+  </section>
+
+  <section class="weapon-category" id="smg">
+    <h2>サブマシンガン</h2>
+  </section>
+
+  <section class="weapon-category" id="rifle">
+    <h2>ライフル</h2>
+  </section>
+
+  <section class="weapon-category" id="shotgun">
+    <h2>ショットガン</h2>
+  </section>
+
+  <section class="weapon-category" id="lmg">
+    <h2>ライトマシンガン</h2>
+  </section>
+
+  <section class="weapon-category" id="cannon">
+    <h2>キャノン</h2>
+  </section>
+
+  <!-- 必要なら他カテゴリも追加 -->
+
+  <script>
+    async function loadModernWeaponsDB() {
+      const url = "https://script.google.com/macros/s/AKfycbwFh-3eK7n73eJH4FwFqcExXRVQSyRXNvg608ch1ttPS6RbOb2Tkw5madxwLks3eE4H/exec";
+
+      let data;
+      try {
+        const res = await fetch(url);
+        data = await res.json();
+      } catch (e) {
+        console.error("API取得エラー:", e);
+        return;
+      }
+
+      data.forEach(w => {
+        // category と同じ id の要素を探す
+        const box = document.getElementById(w.category);
+        if (!box) return;
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <h3>《${w.name}》</h3>
+          <p><strong>装弾：</strong>${w.ammo || "ー"}</p>
+          <p><strong>威力：</strong>${w.power || "ー"}</p>
+          <p><strong>効果：</strong><br>${(w.effect || "ー").replace(/\n/g, "<br>")}</p>
+          <p><strong>耐久：</strong>${w.durability || "ー"}</p>
+        `;
+
+        box.appendChild(card);
+      });
+    }
+
+    loadModernWeaponsDB();
+  </script>
+</body>
+</html>
