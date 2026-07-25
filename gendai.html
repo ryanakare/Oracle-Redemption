@@ -30,6 +30,18 @@
     margin: 4px 0;
   }
 
+  /* トグル */
+  .group-toggle {
+    margin: 20px 0;
+    padding: 10px 16px;
+    background: #222;
+    color: #eee;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
   /* ボタン */
   .category-buttons {
     margin: 20px 0;
@@ -63,52 +75,71 @@
   <h1>現代武器一覧</h1>
   <p>ここに現代武器の説明を貼る。</p>
 
-  <!-- ▼▼▼ カテゴリボタン ▼▼▼ -->
-  <div class="category-buttons">
-    <button onclick="showCategory('pistol')">ピストル</button>
-    <button onclick="showCategory('special')">特殊ピストル</button>
-    <button onclick="showCategory('smg')">サブマシンガン</button>
-    <button onclick="showCategory('rifle')">ライフル</button>
-    <button onclick="showCategory('shotgun')">ショットガン</button>
-    <button onclick="showCategory('lmg')">ライトマシンガン</button>
-    <button onclick="showCategory('cannon')">キャノン</button>
-    <button onclick="showCategory('all')">全て表示</button>
+  <!-- ▼▼▼ 現代武器トグル ▼▼▼ -->
+  <button class="group-toggle" onclick="toggleGroup()">▶ 現代武器</button>
+
+  <div id="modern-weapons" style="display:none; margin-top:20px;">
+
+    <!-- ▼▼▼ カテゴリボタン ▼▼▼ -->
+    <div class="category-buttons">
+      <button onclick="showCategory('pistol')">ピストル</button>
+      <button onclick="showCategory('special')">特殊ピストル</button>
+      <button onclick="showCategory('smg')">サブマシンガン</button>
+      <button onclick="showCategory('rifle')">ライフル</button>
+      <button onclick="showCategory('shotgun')">ショットガン</button>
+      <button onclick="showCategory('lmg')">ライトマシンガン</button>
+      <button onclick="showCategory('cannon')">キャノン</button>
+      <button onclick="showCategory('all')">全て表示</button>
+    </div>
+
+    <!-- ▼▼▼ APIで自動生成されるカテゴリ ▼▼▼ -->
+    <section class="weapon-category" id="pistol">
+      <h2>ピストル</h2>
+    </section>
+
+    <section class="weapon-category" id="special">
+      <h2>特殊ピストル</h2>
+    </section>
+    
+    <section class="weapon-category" id="smg">
+      <h2>サブマシンガン</h2>
+    </section>
+
+    <section class="weapon-category" id="rifle">
+      <h2>ライフル</h2>
+    </section>
+
+    <section class="weapon-category" id="shotgun">
+      <h2>ショットガン</h2>
+    </section>
+
+    <section class="weapon-category" id="lmg">
+      <h2>ライトマシンガン</h2>
+    </section>
+
+    <section class="weapon-category" id="cannon">
+      <h2>キャノン</h2>
+    </section>
+
   </div>
-
-  <!-- ▼▼▼ APIで自動生成されるカテゴリ ▼▼▼ -->
-  <section class="weapon-category" id="pistol">
-    <h2>ピストル</h2>
-  </section>
-
-  <section class="weapon-category" id="special">
-    <h2>特殊ピストル</h2>
-  </section>
-  
-  <section class="weapon-category" id="smg">
-    <h2>サブマシンガン</h2>
-  </section>
-
-  <section class="weapon-category" id="rifle">
-    <h2>ライフル</h2>
-  </section>
-
-  <section class="weapon-category" id="shotgun">
-    <h2>ショットガン</h2>
-  </section>
-
-  <section class="weapon-category" id="lmg">
-    <h2>ライトマシンガン</h2>
-  </section>
-
-  <section class="weapon-category" id="cannon">
-    <h2>キャノン</h2>
-  </section>
-
 </div>
 
 <footer>© Oracle Redemption Project</footer>
 
 <script>
+/* ▼▼▼ トグル ▼▼▼ */
+function toggleGroup() {
+  const box = document.getElementById('modern-weapons');
+  const btn = document.querySelector('.group-toggle');
+  if (box.style.display === 'none') {
+    box.style.display = 'block';
+    btn.textContent = '▼ 現代武器';
+  } else {
+    box.style.display = 'none';
+    btn.textContent = '▶ 現代武器';
+  }
+}
+
 /* ▼▼▼ API読み込み ▼▼▼ */
 async function loadModernWeaponsDB() {
   const url = "https://script.google.com/macros/s/AKfycbyjqSb8TywQ2FQs6dc4p3XU2aHOmtlSSMFE8F2QNeos5ZoOpdmdO55qEwfHvdNqmh13/exec";
@@ -145,7 +176,7 @@ loadModernWeaponsDB();
 
 /* ▼▼▼ カテゴリ表示切り替え ▼▼▼ */
 function showCategory(cat) {
-  const cats = document.querySelectorAll('.weapon-category');
+  const cats = document.querySelectorAll('#modern-weapons .weapon-category');
 
   if (cat === "all") {
     cats.forEach(c => c.style.display = "block");
