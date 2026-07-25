@@ -2,8 +2,68 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Oracle Redemption - 武器</title>
+<title>Oracle Redemption - 武器一覧</title>
 <link rel="stylesheet" href="css/style.css">
+
+<style>
+  .tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .tab {
+    padding: 10px 16px;
+    background: #222;
+    color: #eee;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .tab.active {
+    background: #444;
+    border-color: #888;
+  }
+
+  .weapon-category {
+    margin: 40px 0;
+  }
+  .weapon-category h2 {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+  }
+  .card {
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    background: #111;
+    color: #eee;
+  }
+  .card h3 {
+    margin: 0 0 6px;
+    font-size: 1.1rem;
+  }
+  .card p {
+    margin: 4px 0;
+  }
+
+  .category-buttons {
+    margin: 20px 0;
+  }
+  .category-buttons button {
+    margin: 4px;
+    padding: 8px 14px;
+    background: #222;
+    color: #eee;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .category-buttons button:hover {
+    background: #444;
+  }
+</style>
 </head>
 
 <body>
@@ -17,1099 +77,185 @@
 </nav>
 
 <div class="container">
-<h1>🔫 武器カテゴリ一覧</h1>
+  <h1>武器一覧</h1>
 
-<!-- ▼▼▼ 現代武器：折りたたみ ▼▼▼ -->
-<div class="weapon-group">
-  <button class="group-toggle" onclick="toggleGroup()">▶ 現代武器</button>
-
-  <div id="modern-weapons" style="display:none; margin-top:15px;">
-
-    <!-- カテゴリ切り替えボタン -->
-    <div class="weapon-tabs">
-      <button onclick="showCategory('pistol')">ピストル系</button>
-      <button onclick="showCategory('special')">特殊ピストル系</button>
-      <button onclick="showCategory('smg')">サブマシンガン系</button>
-      <button onclick="showCategory('rifle')">ライフル系</button>
-      <button onclick="showCategory('lmg')">ライトマシンガン系</button>
-      <button onclick="showCategory('shotgun')">ショットガン系</button>
-      <button onclick="showCategory('cannon')">キャノン系</button>
-    </div>
-
-    <!-- ▼▼▼ ここに各カテゴリの weapon-category が入る ▼▼▼ -->
-    <!-- 稜也が既に作った pistol / special / smg / rifle / lmg / shotgun / cannon をそのまま使える -->
+  <!-- ▼▼▼ タブUI ▼▼▼ -->
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('modern')">現代武器</div>
+    <div class="tab" onclick="switchTab('ancient')">古代武器</div>
+    <div class="tab" onclick="switchTab('special')">特殊武器</div>
   </div>
-</div>  <!-- ★ 現代武器の weapon-group をここで閉じる -->
-  
-<!-- ▼▼▼ 古代武器：折りたたみ ▼▼▼ -->
-<div class="weapon-group">
-  <button class="ancient-toggle" onclick="toggleAncient()">▶ 古代武器</button>
 
-  <div id="ancient-weapons" style="display:none; margin-top:15px;">
+  <!-- ▼▼▼ 現代武器 ▼▼▼ -->
+  <div id="modern" class="tab-content">
 
-    <!-- 古代武器カテゴリ切り替えボタン -->
-    <div class="weapon-tabs">
-      <button onclick="showAncient('ancient_pistol')">古代ピストル</button>
-      <button onclick="showAncient('ancient_special')">古代特殊ピストル</button>
-      <button onclick="showAncient('ancient_smg')">古代サブマシンガン</button>
-      <button onclick="showAncient('ancient_shotgun')">古代ショットガン</button>
-      <button onclick="showAncient('ancient_double')">古代ダブルバレル</button>
-      <button onclick="showAncient('ancient_assault')">古代アサルトライフル</button>
-      <button onclick="showAncient('ancient_sniper')">古代スナイパーライフル</button>
-      <button onclick="showAncient('ancient_lmg')">古代ライトマシンガン</button>
-      <button onclick="showAncient('ancient_bazooka')">古代バズーカ</button>
-      <button onclick="showAncient('ancient_grenade')">古代グレポン</button>
+    <div class="category-buttons">
+      <button onclick="showCategory('pistol')">ピストル</button>
+      <button onclick="showCategory('special')">特殊ピストル</button>
+      <button onclick="showCategory('smg')">サブマシンガン</button>
+      <button onclick="showCategory('rifle')">ライフル</button>
+      <button onclick="showCategory('shotgun')">ショットガン</button>
+      <button onclick="showCategory('lmg')">ライトマシンガン</button>
+      <button onclick="showCategory('cannon')">キャノン</button>
+      <button onclick="showCategory('all')">全て表示</button>
     </div>
 
-    <!-- ▼▼▼ 古代カテゴリは必ずここに入れる ▼▼▼ -->
-  </div> <!-- ★ ancient-weapons をここで閉じる -->
- </div>  <!-- ★ weapon-group をここで閉じる -->
+    <section class="weapon-category" id="pistol"><h2>ピストル</h2></section>
+    <section class="weapon-category" id="special"><h2>特殊ピストル</h2></section>
+    <section class="weapon-category" id="smg"><h2>サブマシンガン</h2></section>
+    <section class="weapon-category" id="rifle"><h2>ライフル</h2></section>
+    <section class="weapon-category" id="shotgun"><h2>ショットガン</h2></section>
+    <section class="weapon-category" id="lmg"><h2>ライトマシンガン</h2></section>
+    <section class="weapon-category" id="cannon"><h2>キャノン</h2></section>
 
-  <!-- ▼▼▼ 特殊武器：折りたたみ ▼▼▼ -->
-<div class="weapon-group">
-  <button class="special-toggle" onclick="toggleSpecial()">▶ 特殊武器</button>
-
-  <div id="special-weapons" style="display:none; margin-top:15px;">
-
-    <!-- 特殊武器カテゴリ切り替えボタン -->
-    <div class="weapon-tabs">
-      <button onclick="showSpecial('special_melee')">近接特殊武器</button>
-      <button onclick="showSpecial('special_throw')">投擲特殊武器</button>
-      <button onclick="showSpecial('special_magic')">魔術武器</button>
-      <button onclick="showSpecial('special_support')">支援特殊武器</button>
-    </div>
-
-    <!-- ▼▼▼ 特殊カテゴリはここに入れる ▼▼▼ -->
-   
   </div>
+
+  <!-- ▼▼▼ 古代武器 ▼▼▼ -->
+  <div id="ancient" class="tab-content" style="display:none;">
+
+    <div class="category-buttons">
+      <button onclick="showAncientCategory('ancient_pistol')">古代ピストル</button>
+      <button onclick="showAncientCategory('ancient_special')">古代特殊ピストル</button>
+      <button onclick="showAncientCategory('ancient_smg')">古代サブマシンガン</button>
+      <button onclick="showAncientCategory('ancient_shotgun')">古代ショットガン</button>
+      <button onclick="showAncientCategory('ancient_double')">古代ダブルバレル</button>
+      <button onclick="showAncientCategory('ancient_assault')">古代アサルトライフル</button>
+      <button onclick="showAncientCategory('ancient_sniper')">古代スナイパーライフル</button>
+      <button onclick="showAncientCategory('ancient_lmg')">古代ライトマシンガン</button>
+      <button onclick="showAncientCategory('ancient_bazooka')">古代バズーカ</button>
+      <button onclick="showAncientCategory('ancient_grenade')">古代グレポン</button>
+      <button onclick="showAncientCategory('all')">全て表示</button>
+    </div>
+
+    <section class="weapon-category" id="ancient_pistol"><h2>古代ピストル</h2></section>
+    <section class="weapon-category" id="ancient_special"><h2>古代特殊ピストル</h2></section>
+    <section class="weapon-category" id="ancient_smg"><h2>古代サブマシンガン</h2></section>
+    <section class="weapon-category" id="ancient_shotgun"><h2>古代ショットガン</h2></section>
+    <section class="weapon-category" id="ancient_double"><h2>古代ダブルバレル</h2></section>
+    <section class="weapon-category" id="ancient_assault"><h2>古代アサルトライフル</h2></section>
+    <section class="weapon-category" id="ancient_sniper"><h2>古代スナイパーライフル</h2></section>
+    <section class="weapon-category" id="ancient_lmg"><h2>古代ライトマシンガン</h2></section>
+    <section class="weapon-category" id="ancient_bazooka"><h2>古代バズーカ</h2></section>
+    <section class="weapon-category" id="ancient_grenade"><h2>古代グレポン</h2></section>
+
+  </div>
+
+  <!-- ▼▼▼ 特殊武器 ▼▼▼ -->
+  <div id="special" class="tab-content" style="display:none;">
+
+    <div class="category-buttons">
+      <button onclick="showSpecialCategory('special_melee')">近接特殊武器</button>
+      <button onclick="showSpecialCategory('special_throw')">投擲特殊武器</button>
+      <button onclick="showSpecialCategory('special_magic')">魔術武器</button>
+      <button onclick="showSpecialCategory('special_support')">支援特殊武器</button>
+      <button onclick="showSpecialCategory('all')">全て表示</button>
+    </div>
+
+    <section class="weapon-category" id="special_melee"><h2>近接特殊武器</h2></section>
+    <section class="weapon-category" id="special_throw"><h2>投擲特殊武器</h2></section>
+    <section class="weapon-category" id="special_magic"><h2>魔術武器</h2></section>
+    <section class="weapon-category" id="special_support"><h2>支援特殊武器</h2></section>
+
+  </div>
+
 </div>
 
+<footer>© Oracle Redemption Project</footer>
+
 <script>
-// ▼ 現代武器トグル
-function toggleGroup() {
-  const box = document.getElementById('modern-weapons');
-  const btn = document.querySelector('.group-toggle');
-  if (box.style.display === 'none') {
-    box.style.display = 'block';
-    btn.textContent = '▼ 現代武器';
-  } else {
-    box.style.display = 'none';
-    btn.textContent = '▶ 現代武器';
-  }
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+  document.getElementById(tab).style.display = 'block';
+
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.tab[onclick="switchTab('${tab}')"]`).classList.add('active');
 }
 
-// ▼ 古代武器トグル
-function toggleAncient() {
-  const box = document.getElementById('ancient-weapons');
-  const btn = document.querySelector('.ancient-toggle');
-  if (box.style.display === 'none') {
-    box.style.display = 'block';
-    btn.textContent = '▼ 古代武器';
-  } else {
-    box.style.display = 'none';
-    btn.textContent = '▶ 古代武器';
-  }
+/* 現代武器API */
+async function loadModernWeaponsDB() {
+  const url = "https://script.google.com/macros/s/AKfycbyjqSb8TywQ2FQs6dc4p3XU2aHOmtlSSMFE8F2QNeos5ZoOpdmdO55qEwfHvdNqmh13/exec";
+  const res = await fetch(url);
+  const data = await res.json();
+
+  data.forEach(w => {
+    const box = document.getElementById(w.category);
+    if (!box) return;
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <h3>《${w.name}》</h3>
+      <p><strong>装弾：</strong>${w.ammo || "ー"}</p>
+      <p><strong>威力：</strong>${w.power || "ー"}</p>
+      <p><strong>効果：</strong><br>${(w.effect || "ー").replace(/\n/g, "<br>")}</p>
+      <p><strong>耐久：</strong>${w.durability || "ー"}</p>
+    `;
+    box.appendChild(card);
+  });
+}
+loadModernWeaponsDB();
+
+/* 古代武器API */
+async function loadAncientWeaponsDB() {
+  const url = "https://script.google.com/macros/s/AKfycbxL7EgSt9n9XNUeIpwaEPjHwaMKZiexDhEVgEZxdvHqRX3AJMJb2LvIGmHtfFPxT8I/exec";
+  const res = await fetch(url);
+  const data = await res.json();
+
+  data.forEach(w => {
+    const box = document.getElementById(w.category);
+    if (!box) return;
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <h3>《${w.name}》</h3>
+      <p><strong>装弾：</strong>${w.ammo || "ー"}</p>
+      <p><strong>威力：</strong>${w.power || "ー"}</p>
+      <p><strong>効果：</strong><br>${(w.effect || "ー").replace(/\n/g, "<br>")}</p>
+      <p><strong>耐久：</strong>${w.durability || "ー"}</p>
+    `;
+    box.appendChild(card);
+  });
+}
+loadAncientWeaponsDB();
+
+/* 特殊武器API */
+async function loadSpecialWeaponsDB() {
+  const url = "https://script.google.com/macros/s/AKfycbxG2bbR7fNRV-ZfijAiR8Xy0OhXWCGHwvZR7KdESZTr1LeCv0fupAS4qvbSTP8z8bAQ/exec";
+  const res = await fetch(url);
+  const data = await res.json();
+
+  data.forEach(w => {
+    const box = document.getElementById(w.category);
+    if (!box) return;
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <h3>《${w.name}》</h3>
+      <p><strong>装弾：</strong>${w.ammo || "ー"}</p>
+      <p><strong>威力：</strong>${w.power || "ー"}</p>
+      <p><strong>効果：</strong><br>${(w.effect || "ー").replace(/\n/g, "<br>")}</p>
+      <p><strong>耐久：</strong>${w.durability || "ー"}</p>
+    `;
+    box.appendChild(card);
+  });
+}
+loadSpecialWeaponsDB();
+
+/* カテゴリ切り替え */
+function showCategory(cat) {
+  const cats = document.querySelectorAll('#modern .weapon-category');
+  cats.forEach(c => c.style.display = (cat === "all" || c.id === cat) ? "block" : "none");
 }
 
-// ▼ 特殊武器トグル
-function toggleSpecial() {
-  const box = document.getElementById('special-weapons');
-  const btn = document.querySelector('.special-toggle');
-  if (box.style.display === 'none') {
-    box.style.display = 'block';
-    btn.textContent = '▼ 特殊武器';
-  } else {
-    box.style.display = 'none';
-    btn.textContent = '▶ 特殊武器';
-  }
+function showAncientCategory(cat) {
+  const cats = document.querySelectorAll('#ancient .weapon-category');
+  cats.forEach(c => c.style.display = (cat === "all" || c.id === cat) ? "block" : "none");
 }
 
-
-// ▼ 現代カテゴリ表示
-function showCategory(id) {
-
-  // 全カテゴリ消去
-  document.querySelectorAll('.weapon-category').forEach(c => c.style.display = 'none');
-  document.querySelectorAll('.ancient-category').forEach(c => c.style.display = 'none');
-  document.querySelectorAll('.special-category').forEach(c => c.style.display = 'none');
-
-  // 古代武器トグル閉じる
-  const ancientBox = document.getElementById('ancient-weapons');
-  ancientBox.style.display = 'none';
-  document.querySelector('.ancient-toggle').textContent = '▶ 古代武器';
-
-  // 特殊武器トグル閉じる
-  const specialBox = document.getElementById('special-weapons');
-  specialBox.style.display = 'none';
-  document.querySelector('.special-toggle').textContent = '▶ 特殊武器';
-
-  // 現代武器トグル開く
-  const modernBox = document.getElementById('modern-weapons');
-  modernBox.style.display = 'block';
-  document.querySelector('.group-toggle').textContent = '▼ 現代武器';
-
-  // 現代カテゴリ表示
-  document.getElementById(id).style.display = 'block';
-}
-
-
-// ▼ 古代カテゴリ表示
-function showAncient(id) {
-
-  // 全カテゴリ消去
-  document.querySelectorAll('.ancient-category').forEach(c => c.style.display = 'none');
-  document.querySelectorAll('.weapon-category').forEach(c => c.style.display = 'none');
-  document.querySelectorAll('.special-category').forEach(c => c.style.display = 'none');
-
-  // 現代武器トグル閉じる
-  const modernBox = document.getElementById('modern-weapons');
-  modernBox.style.display = 'none';
-  document.querySelector('.group-toggle').textContent = '▶ 現代武器';
-
-  // 特殊武器トグル閉じる
-  const specialBox = document.getElementById('special-weapons');
-  specialBox.style.display = 'none';
-  document.querySelector('.special-toggle').textContent = '▶ 特殊武器';
-
-  // 古代武器トグル開く
-  const ancientBox = document.getElementById('ancient-weapons');
-  ancientBox.style.display = 'block';
-  document.querySelector('.ancient-toggle').textContent = '▼ 古代武器';
-
-  // 古代カテゴリ表示
-  document.getElementById(id).style.display = 'block';
-}
-
-
-// ▼ 特殊カテゴリ表示
-function showSpecial(id) {
-
-  // 全カテゴリ消去
-  document.querySelectorAll('.special-category').forEach(c => c.style.display = 'none');
-  document.querySelectorAll('.weapon-category').forEach(c => c.style.display = 'none');
-  document.querySelectorAll('.ancient-category').forEach(c => c.style.display = 'none');
-
-  // 現代武器トグル閉じる
-  const modernBox = document.getElementById('modern-weapons');
-  modernBox.style.display = 'none';
-  document.querySelector('.group-toggle').textContent = '▶ 現代武器';
-
-  // 古代武器トグル閉じる
-  const ancientBox = document.getElementById('ancient-weapons');
-  ancientBox.style.display = 'none';
-  document.querySelector('.ancient-toggle').textContent = '▶ 古代武器';
-
-  // 特殊武器トグル開く
-  const specialBox = document.getElementById('special-weapons');
-  specialBox.style.display = 'block';
-  document.querySelector('.special-toggle').textContent = '▼ 特殊武器';
-
-  // 特殊カテゴリ表示
-  document.getElementById(id).style.display = 'block';
+function showSpecialCategory(cat) {
+  const cats = document.querySelectorAll('#special .weapon-category');
+  cats.forEach(c => c.style.display = (cat === "all" || c.id === cat) ? "block" : "none");
 }
 </script>
 
-  
-<!-- ========================= -->
-<!--  ピストル系               -->
-<!-- ========================= -->
-<div class="weapon-category" id="pistol">
-  <h2>🔸 ピストル系</h2>
-
-  <div class="card">
-    <h3>《Rピストル》</h3>
-    <p><strong>種別：</strong>護身用ピストル(民間用)</p>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費と1D3MP消費<br>
-      ・1ターンに1〜1D3発発射可能
-    </p>
-    <p><strong>威力：</strong>1D6</p>
-  </div>
-
-  <div class="card">
-    <h3>《スタンガン》</h3>
-    <p><strong>装弾：</strong>10発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費と1D3+1MP消費<br>
-      ・1ターンに1〜1D4発発射可能<br>
-      ・命中数×10%でスタン
-    </p>
-    <p><strong>威力：</strong>1D3+1</p>
-  </div>
-
-    <div class="card">
-    <h3>《チャージバースト》</h3>
-    <p><strong>装弾：</strong>8発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費と1D6MP消費<br>
-      ・1ターンに1発発射可能<br>
-      ・構え状態でチャージすると4連射
-    </p>
-    <p><strong>威力：</strong>1D6+1</p>
-  </div>
-
-  <div class="card">
-    <h3>《護身用ピストル(改造銃)》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費と1D3MP消費<br>
-      ・1ターンに1D3-1発発射可能（0で詰まり）
-    </p>
-    <p><strong>威力：</strong>1D6 + (1D3-1)</p>
-  </div>
-</div>
-
-<!-- ========================= -->
-<!--  特殊ピストル系           -->
-<!-- ========================= -->
-<div class="weapon-category" id="special" style="display:none;">
-  <h2>🔸 特殊ピストル系</h2>
-
-  <div class="card">
-    <h3>《バイパー》</h3>
-    <p><strong>装弾：</strong>15発</p>
-    <p><strong>効果：</strong><br>
-      ・HP1D15消費で即リロード<br>
-      ・1ターンに1〜1D3発発射可能
-    </p>
-    <p><strong>威力：</strong>1D10+1D3</p>
-  </div>
-
-  <div class="card">
-    <h3>《フランケン》</h3>
-    <p><strong>装弾：</strong>3発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時に能力強化 or HP回復<br>
-      ・1ターンに1D3発発射可能
-    </p>
-    <p><strong>威力：</strong>1D20 / 1D2</p>
-  </div>
-
-   <div class="card">
-    <h3>《レッドライン》</h3>
-    <p><strong>装弾：</strong>15発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費と1D10MP消費<br>
-      ・HPが一桁で以下を選択：<br>
-      連射数最大固定 / 威力1D2倍化<br>
-      ・1ターンに1〜1D5発発射可能
-    </p>
-    <p><strong>威力：</strong>1D9</p>
-  </div>
-
-  <div class="card">
-    <h3>《モンスター》</h3>
-    <p><strong>装弾：</strong>12発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費と4D2MP消費<br>
-      ・1ターンに4発発射可能<br>
-      ・4体同時攻撃可能（単体は1D4発）
-    </p>
-    <p><strong>威力：</strong>1D8</p>
-  </div>
- 
-</div>
-
-<!-- ========================= -->
-<!--  サブマシンガン系         -->
-<!-- ========================= -->
-<div class="weapon-category" id="smg" style="display:none;">
-  <h2>🔸 サブマシンガン系</h2>
-
-  <div class="card">
-    <h3>《パルスガン(民間用)》</h3>
-    <p><strong>装弾：</strong>30発</p>
-    <p><strong>効果：</strong><br>
-      ・1D2ターン＋2D5MPでリロード<br>
-      ・2〜1D残弾発射可能
-    </p>
-    <p><strong>威力：</strong>1D3</p>
-  </div>
-
- <div class="card">
-    <h3>《強化型パルスガン(軍事用)》</h3>
-    <p><strong>装弾：</strong>30発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時に2ターン消費と10MP消費<br>
-      ・1ターンに2〜1D残弾発射可能
-    </p>
-    <p><strong>威力：</strong>1D6</p>
-  </div>
-  
-</div>
-
-<!-- ========================= -->
-<!--  ライフル系               -->
-<!-- ========================= -->
-<div class="weapon-category" id="rifle" style="display:none;">
-  <h2>🔸 ライフル系</h2>
-
-  <div class="card">
-    <h3>《チャージライフル(民間用)》</h3>
-    <p><strong>装弾：</strong>10発</p>
-    <p><strong>効果：</strong><br>
-      ・2ターンチャージで威力2倍
-    </p>
-    <p><strong>威力：</strong>1D18</p>
-  </div>
-
- <div class="card">
-  <h3>《強化チャージライフル(軍事用)》</h3>
-  <p><strong>装弾：</strong>5発</p>
-  <p><strong>効果：</strong><br>
-    ・リロード時に1D2+1ターン消費と3D5MP消費<br>
-    ・1ターンに一発発射可能<br>
-    ・2ターンチャージで次の威力が2倍
-  </p>
-  <p><strong>威力：</strong>3D6</p>
-</div>
-
-<div class="card">
-  <h3>《双身式チャージライフル(軍事用)》</h3>
-  <p><strong>装弾：</strong>6発</p>
-  <p><strong>効果：</strong><br>
-    ・リロード時に2ターン消費と2D6MP消費<br>
-    ・1ターンに二発発射可能<br>
-    ・2本のレーザーを同時に放つ
-  </p>
-  <p><strong>威力：</strong>1D10</p>
-</div>
-
-<div class="card">
-  <h3>《プラズマライフル》</h3>
-  <p><strong>装弾：</strong>8発</p>
-  <p><strong>効果：</strong><br>
-    ・リロード時に2ターン消費と1D12MP消費<br>
-    ・1ターンに一発発射可能<br>
-    ・命中後、受け流し不可の1D10爆発ダメージ
-  </p>
-  <p><strong>威力：</strong>1D10</p>
-</div>
- 
-</div>
-
-<!-- ========================= -->
-<!--  ライトマシンガン系       -->
-<!-- ========================= -->
-<div class="weapon-category" id="lmg" style="display:none;">
-  <h2>🔸 ライトマシンガン系</h2>
-
-  <div class="card">
-    <h3>《ビームライフル》</h3>
-    <p><strong>装弾：</strong>20発</p>
-    <p><strong>効果：</strong><br>
-      ・1〜1D残弾発射可能
-    </p>
-    <p><strong>威力：</strong>1D12</p>
-  </div>
-
- <div class="card">
-  <h3>《ビームライフル(軍事用)》</h3>
-  <p><strong>装弾：</strong>30発</p>
-  <p><strong>効果：</strong><br>
-    ・リロード時に2ターン消費と2D6MP消費<br>
-    ・1ターンに1〜1D残弾発射可能
-  </p>
-  <p><strong>威力：</strong>2D6+1</p>
-</div>
-
-<div class="card">
-  <h3>《ヘル》</h3>
-  <p><strong>装弾：</strong>25発</p>
-  <p><strong>効果：</strong><br>
-    ・リロード時に2ターン消費と1D12+1D6MP消費<br>
-    ・1ターンに1〜1D残弾発射可能<br>
-    ・1D命中回数の追加ダメージ付与
-  </p>
-  <p><strong>威力：</strong>1D6</p>
-</div>
-
-<div class="card">
-  <h3>《ヘル・ファイア(軍事用)》</h3>
-  <p><strong>装弾：</strong>50発</p>
-  <p><strong>効果：</strong><br>
-    ・リロード時に2ターン消費と3D6MP消費<br>
-    ・1ターンに1〜1D残弾発射可能<br>
-    ・1D命中回数の追加ダメージ付与
-  </p>
-  <p><strong>威力：</strong>1D8</p>
-</div>
- 
-</div>
-
-<!-- ========================= -->
-<!--  ショットガン系           -->
-<!-- ========================= -->
-<div class="weapon-category" id="shotgun" style="display:none;">
-  <h2>🔸 ショットガン系</h2>
-
-  <div class="card">
-    <h3>《レーザーショット》</h3>
-    <p><strong>装弾：</strong>4発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンで1D4発リロード可能（装填数×1D3MP消費）<br>
-      ・1ターンに一発発射可能<br>
-      ・一度命中すると次のダメージが1D2倍化（発動でリセット）
-    </p>
-    <p><strong>威力：</strong><br>
-      出目50未満：1D18<br>
-      出目50以上：1D9
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>《拡散ビーム》</h3>
-    <p><strong>装弾：</strong>2発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに一発発射可能<br>
-      ・1ターンで1発リロード可能（1D8MP消費）<br>
-      ・至近距離で複数レーザー発射（回避率÷1D4）<br>
-      ・2チャージでレーザー収縮、残弾2発を消費して発射
-    </p>
-    <p><strong>威力：</strong><br>
-      ノーマル：1D12<br>
-      チャージ：4D6
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>《ショックショット》</h3>
-    <p><strong>装弾：</strong>5発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに一発発射可能<br>
-      ・1ターンで1D3発リロード可能（1D10MP消費）<br>
-      ・命中時、25%でスタン付与
-    </p>
-    <p><strong>威力：</strong>2D6</p>
-  </div>
-
-  <div class="card">
-    <h3>《ソードオフショット》</h3>
-    <p><strong>装弾：</strong>2発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1〜2発発射可能<br>
-      ・1ターン消費＋1D6MPでリロード可能<br>
-      ・1D6×2MP消費でターン消費なしリロード
-    </p>
-    <p><strong>威力：</strong>2D6+2</p>
-  </div>
-
-</div>
-
-<!-- ========================= -->
-<!--  キャノン系               -->
-<!-- ========================= -->
-<div class="weapon-category" id="cannon" style="display:none;">
-  <h2>🔸 キャノン系</h2>
-
-  <div class="card">
-    <h3>《照射砲(軍事用)》</h3>
-    <p><strong>装弾：</strong>1発</p>
-    <p><strong>効果：</strong><br>
-      ・3ターンチャージで放てる全体攻撃<br>
-      ・1ターンに一発発射可能<br>
-      ・1D2+1ターン消費＋18MPでリロード可能
-    </p>
-    <p><strong>威力：</strong><br>
-      1D40 / 1D4
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>《追尾レーザー(軍事用)》</h3>
-    <p><strong>装弾：</strong>1発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに一発発射可能<br>
-      ・1D2+1ターン消費＋10MPでリロード可能<br>
-      ・外れても毎ターン50%で戻ってきて命中する追尾レーザー
-    </p>
-    <p><strong>威力：</strong>1D25</p>
-  </div>
-
-</div>
-  
-<!-- ========================= -->
-<!--  古代ピストル系               -->
-<!-- ========================= -->
-<div class="ancient-category" id="ancient_pistol"style="display:none;">
-
-  <h2>🔸 古代ピストル</h2>
-
-  <div class="card">
-    <h3>《大口径ハンドガン》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに一発発射可能<br>
-      ・1ターン消費でリロード可能
-    </p>
-    <p><strong>威力：</strong>1D10+1D3+1</p>
-  </div>
-
-  <div class="card">
-    <h3>《長銃身ハンドガン》</h3>
-    <p><strong>装弾：</strong>4発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに一発発射可能<br>
-      ・1D2ターン消費でリロード可能
-    </p>
-    <p><strong>威力：</strong>1D10+1D4+2</p>
-  </div>
-
-  <div class="card">
-    <h3>《ドラムハンドガン》</h3>
-    <p><strong>装弾：</strong>25発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1〜5発発射可能<br>
-      ・1D3ターン消費でリロード可能
-    </p>
-    <p><strong>威力：</strong>1D4</p>
-  </div>
-
-  <div class="card">
-    <h3>《バーストハンドガン》</h3>
-    <p><strong>装弾：</strong>12発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに3発発射可能<br>
-      ・命中補正+25%<br>
-      ・1ターン消費でリロード可能
-    </p>
-    <p><strong>威力：</strong>1D10+1D2</p>
-  </div>
-
-  <div class="card">
-    <h3>《軽量ハンドガン》</h3>
-    <p><strong>装弾：</strong>15発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1〜3発発射可能<br>
-      ・50%の確率でターン消費無しでリロード可能
-    </p>
-    <p><strong>威力：</strong>1D8</p>
-  </div>
-
-  <div class="card">
-    <h3>《ハンティング》</h3>
-    <p><strong>装弾：</strong>8発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1〜4発発射可能<br>
-      ・出目25%以下で1D2倍化<br>
-      ・クリティカル時、1ターンスタン付与
-    </p>
-    <p><strong>威力：</strong>1D10+2</p>
-  </div>
-
-  <div class="card">
-    <h3>《ヌエ》</h3>
-    <p><strong>装弾：</strong>18発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1〜6発発射可能<br>
-      ・命中時、着弾数×10%で追加ダメージ（1D×着弾数）<br>
-      ・命中時、着弾数×5%で1ターンスタン
-    </p>
-    <p><strong>威力：</strong>1D6+1D4+1D2</p>
-  </div>
-
-  <div class="card">
-    <h3>《ダブル》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに2発発射可能<br>
-      ・一度の判定で2発発射
-    </p>
-    <p><strong>威力：</strong>1D12</p>
-  </div>
-
-  <div class="card">
-    <h3>《ピストル(警備モデル)》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費＋1D4MP消費<br>
-      ・1ターンに1〜1D3発発射可能
-    </p>
-    <p><strong>威力：</strong>1D8+(1D2-1)</p>
-  </div>
-
-  <div class="card">
-    <h3>《ピストル(軍事用)》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費＋1D5MP消費<br>
-      ・1ターンに1〜(1D2+1)発発射可能
-    </p>
-    <p><strong>威力：</strong>1D10+(1D3-1)</p>
-  </div>
-
-  <div class="card">
-    <h3>《トカレフ(量産品ハンドガン)》</h3>
-    <p><strong>装弾：</strong>12発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1D2ターン消費<br>
-      ・1ターンに1D4発発射可能
-    </p>
-    <p><strong>威力：</strong>1D8+(1D2-1)</p>
-  </div>
-
-</div>
-
-    
-<!-- ========================= -->
-<!--  古代特殊ピストル系         -->
-<!-- ========================= -->
-<div class="ancient-category" id="ancient_special"style="display:none;">
-
-  <h2>🔸 古代特殊ピストル</h2>
-
-  <div class="card">
-    <h3>《リボルバー》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1〜2発発射可能<br>
-      ・ターン消費無しで1D6/2発リロード可能<br>
-      ・1ターン消費時、1D6発リロード可能
-    </p>
-    <p><strong>威力：</strong>1D10+1D4</p>
-  </div>
-
-  <div class="card">
-    <h3>《大口径リボルバー》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1発発射可能<br>
-      ・ターン消費無しで1D6/2発リロード可能<br>
-      ・1ターン消費時、1D6発リロード可能
-    </p>
-    <p><strong>威力：</strong>1D10+1D4+2</p>
-  </div>
-
-  <div class="card">
-    <h3>《バースト》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1〜1D残弾発射可能<br>
-      ・1ターン消費時、1D6発リロード可能
-    </p>
-    <p><strong>威力：</strong>1D10+1D6</p>
-  </div>
-
-  <div class="card">
-    <h3>《キャノン》</h3>
-    <p><strong>装弾：</strong>1発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1発発射可能<br>
-      ・1ターンに一発リロード可能<br>
-      ・着弾後、1D18の追加ダメージ
-    </p>
-    <p><strong>威力：</strong>1D18</p>
-  </div>
-
-  <div class="card">
-    <h3>《ピースメイカー(量産品リボルバー)》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード時、1ターン消費で1D空いてる分リロード<br>
-      ・1ターンに1D2発発射可能
-    </p>
-    <p><strong>威力：</strong>1D10+2</p>
-  </div>
-
-</div>
-
-   
-<!-- ========================= -->
-<!--  古代サブマシンガン系       -->
-<!-- ========================= --> 
-<div class="ancient-category" id="ancient_smg"style="display:none;">
-
-  <h2>🔸 古代サブマシンガン</h2>
-
-  <div class="card">
-    <h3>《マシンガン》</h3>
-    <p><strong>装弾：</strong>30発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに2〜残弾発射可能<br>
-      ・2ターンでリロード可能
-    </p>
-    <p><strong>威力：</strong>1D10</p>
-  </div>
-
-  <div class="card">
-    <h3>《ドラムマシンガン》</h3>
-    <p><strong>装弾：</strong>50発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに2〜残弾発射可能<br>
-      ・3ターンでリロード可能
-    </p>
-    <p><strong>威力：</strong>1D2 + (1D10 / 1D2)</p>
-  </div>
-
-  <div class="card">
-    <h3>《バーストマシンガン》</h3>
-    <p><strong>装弾：</strong>20発</p>
-    <p><strong>効果：</strong><br>
-      ・一回の射撃で4発発射可能<br>
-      ・1D2ターンでリロード可能
-    </p>
-    <p><strong>威力：</strong>1D8</p>
-  </div>
-
-  <div class="card">
-    <h3>《ハイマシンガン》</h3>
-    <p><strong>装弾：</strong>25発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに3〜残弾発射可能<br>
-      ・2ターンでリロード可能<br>
-      ・3発発射時、25%で貫通
-    </p>
-    <p><strong>威力：</strong>1D10</p>
-  </div>
-
-</div>
-
-<div class="ancient-category" id="ancient_shotgun" style="display:none;">
-
-  <h2>🔸 古代ショットガン</h2>
-
-  <div class="card">
-    <h3>《単射程ショットガン》</h3>
-    <p><strong>装弾：</strong>5発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1〜3発発射可能<br>
-      ・1ターンに一発装填可能
-    </p>
-    <p><strong>威力：</strong>1D4×1D5</p>
-  </div>
-
-  <div class="card">
-    <h3>《長射程ショットガン》</h3>
-    <p><strong>装弾：</strong>3発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに1〜2発発射可能<br>
-      ・1ターン消費で一発リロード可能
-    </p>
-    <p><strong>威力：</strong>1D4×6</p>
-  </div>
-
-  <div class="card">
-    <h3>《散弾》</h3>
-    <p><strong>装弾：</strong>1発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターンに一発発射可能<br>
-      ・回避成功率÷5
-    </p>
-    <p><strong>威力：</strong>1D10</p>
-  </div>
-
-</div>
-
-<div class="ancient-category" id="ancient_double" style="display:none;">
-
-  <h2>🔸 古代ダブルバレル</h2>
-
-  <div class="card">
-    <h3>《ダブルバレル》</h3>
-    <p><strong>装弾：</strong>2発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン経過時50%で一発リロード<br>
-      ・1ターン消費で2発リロード<br>
-      ・1ターンに一発発射可能
-    </p>
-    <p><strong>威力：</strong>1D18+2</p>
-  </div>
-
-  <div class="card">
-    <h3>《ツインバレル》</h3>
-    <p><strong>装弾：</strong>2発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン消費で2発リロード<br>
-      ・1ターンに2発発射可能<br>
-      ・2体の対象を攻撃可能
-    </p>
-    <p><strong>威力：</strong>2D6+1</p>
-  </div>
-
-  <div class="card">
-    <h3>《サディス》</h3>
-    <p><strong>装弾：</strong>2発</p>
-    <p><strong>効果：</strong><br>
-      ・1体の対象に2発同時発射可能<br>
-      ・1ターン消費で一発リロード
-    </p>
-    <p><strong>威力：</strong>3D6+2</p>
-  </div>
-
-</div>
-
-<div class="ancient-category" id="ancient_assault" style="display:none;">
-
-  <h2>🔸 古代アサルトライフル</h2>
-
-  <div class="card">
-    <h3>《アサルト》</h3>
-    <p><strong>装弾：</strong>30発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン1〜残弾発射可能<br>
-      ・1D2+1ターンでリロード可能
-    </p>
-    <p><strong>威力：</strong>2D6+1D4</p>
-  </div>
-
-  <div class="card">
-    <h3>《バーストライフル》</h3>
-    <p><strong>装弾：</strong>30発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン3発発射可能<br>
-      ・出目が80以上だと反動により銃が飛ぶ
-    </p>
-    <p><strong>威力：</strong>2D10+4</p>
-  </div>
-
-  <div class="card">
-    <h3>《火力型アサルト》</h3>
-    <p><strong>装弾：</strong>15発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン1〜残弾発射可能<br>
-      ・1D2+1ターンでリロード可能
-    </p>
-    <p><strong>威力：</strong>2D6+4</p>
-  </div>
-
-  <div class="card">
-    <h3>《バーストアサルト》</h3>
-    <p><strong>装弾：</strong>25発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン3の倍数分発射可能<br>
-      ・3ターンでリロード可能
-    </p>
-    <p><strong>威力：</strong>2D6+3</p>
-  </div>
-
-</div>
-
-<div class="ancient-category" id="ancient_sniper" style="display:none;">
-
-  <h2>🔸 古代スナイパーライフル</h2>
-
-  <div class="card">
-    <h3>《狙撃銃》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン1〜3発発射可能<br>
-      ・1D3ターン消費でリロード可能
-    </p>
-    <p><strong>威力：</strong>1D8+1D6+3</p>
-  </div>
-
-  <div class="card">
-    <h3>《アサシンライフル》</h3>
-    <p><strong>装弾：</strong>4発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン1〜2発発射可能<br>
-      ・ターン消費無しで1ターン一発装填可能<br>
-      ・サプレッサー装備
-    </p>
-    <p><strong>威力：</strong>2D6</p>
-  </div>
-
-  <div class="card">
-    <h3>《リトルファイア》</h3>
-    <p><strong>装弾：</strong>5発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン一発発射可能<br>
-      ・2ターン消費でリロード可能<br>
-      ・命中時、1ターン後に1D25ダメージ爆発を起こす
-    </p>
-    <p><strong>威力：</strong>1D6+1D4</p>
-  </div>
-
-  <div class="card">
-    <h3>《対物ライフル》</h3>
-    <p><strong>装弾：</strong>1発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン一発発射可能<br>
-      ・1D3ターン消費でリロード可能<br>
-      ・50%判定成功で完全貫通
-    </p>
-    <p><strong>威力：</strong>2D10+1D8+6</p>
-  </div>
-
-</div>
-
-<div class="ancient-category" id="ancient_lmg" style="display:none;">
-
-  <h2>🔸 古代ライトマシンガン</h2>
-
-  <div class="card">
-    <h3>《ミニミ》</h3>
-    <p><strong>装弾：</strong>250発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン1D残弾発射可能<br>
-      ・リロード時5ターン消費<br>
-      ・2ターン以内に100発撃つとオーバーヒート（1D3ターン使用不可）
-    </p>
-    <p><strong>威力：</strong>1D12</p>
-  </div>
-
-  <div class="card">
-    <h3>《火炎放射器》</h3>
-    <p><strong>装弾：</strong>500発</p>
-    <p><strong>効果：</strong><br>
-      ・リロード不可<br>
-      ・1ターン1D100発発射可能<br>
-      ・50以上消費すると2ターンオーバーヒート<br>
-      ・消費数で判定成功すると燃え移り発生（相手ターン開始時50%で判定、装甲無視2D6ダメージが重複）
-    </p>
-    <p><strong>威力：</strong>2D6</p>
-  </div>
-
-</div>
-
-<div class="ancient-category" id="ancient_bazooka" style="display:none;">
-
-  <h2>🔸 古代バズーカ</h2>
-
-  <div class="card">
-    <h3>《バズーカ》</h3>
-    <p><strong>装弾：</strong>4発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン消費で1発リロード可能<br>
-      ・1ターンに一発発射可能<br>
-      ・発射すると、1D2ターン（発射不可＋片腕使用不可）
-    </p>
-    <p><strong>威力：</strong>4D10</p>
-  </div>
-
-  <div class="card">
-    <h3>《小型バズーカ》</h3>
-    <p><strong>装弾：</strong>3発</p>
-    <p><strong>効果：</strong><br>
-      ・1ターン消費で1発リロード可能<br>
-      ・1ターンに一発発射可能
-    </p>
-    <p><strong>威力：</strong>2D10+1D5</p>
-  </div>
-
-  <div class="card">
-    <h3>《中型バズーカ》</h3>
-    <p><strong>装弾：</strong>2発</p>
-    <p><strong>効果：</strong><br>
-      ・1D2ターン消費で1発リロード可能<br>
-      ・1ターンに一発発射可能<br>
-      ・発射すると、1D3ターン（発射不可＋片腕使用不可）
-    </p>
-    <p><strong>威力：</strong>5D10</p>
-  </div>
-
-  <div class="card">
-    <h3>《炸裂バズーカ》</h3>
-    <p><strong>装弾：</strong>1発</p>
-    <p><strong>効果：</strong><br>
-      ・1D3ターン消費で1発リロード可能<br>
-      ・1ターンに一発発射可能<br>
-      ・発射すると、90%以上の出目で破損<br>
-      ・全体攻撃
-    </p>
-    <p><strong>威力：</strong>2D25×1D2</p>
-  </div>
-
-</div>
-
-<div class="ancient-category" id="ancient_grenade" style="display:none;">
-
-  <h2>🔸 古代グレポン</h2>
-
-  <div class="card">
-    <h3>《グレネード》</h3>
-    <p><strong>装弾：</strong>4発</p>
-    <p><strong>効果：</strong><br>
-      ・1D4ターン消費でリロード可能<br>
-      ・1ターンに一発発射可能<br>
-      ・1D3人に範囲攻撃
-    </p>
-    <p><strong>威力：</strong>1D10+1D15</p>
-  </div>
-
-  <div class="card">
-    <h3>《大型グレネード》</h3>
-    <p><strong>装弾：</strong>2発</p>
-    <p><strong>効果：</strong><br>
-      ・1D2ターン消費で一発リロード可能<br>
-      ・1ターンに一発発射可能<br>
-      ・1D相手人数に範囲攻撃
-    </p>
-    <p><strong>威力：</strong>1D50</p>
-  </div>
-
-  <div class="card">
-    <h3>《小型グレネード》</h3>
-    <p><strong>装弾：</strong>6発</p>
-    <p><strong>効果：</strong><br>
-      ・1D2ターン消費で2発リロード可能<br>
-      ・1ターンに一発発射可能<br>
-      ・1D2人に範囲攻撃
-    </p>
-    <p><strong>威力：</strong>1D20</p>
-  </div>
-
-  <div class="card">
-    <h3>《ハンドミサイル》</h3>
-    <p><strong>装弾：</strong>4発</p>
-    <p><strong>効果：</strong><br>
-      ・1D2ターン消費で2発リロード可能<br>
-      ・1ターンに残弾分発射可能<br>
-      ・装備して相手を指定する事で、別々の対象に発射（最大4人指定可能）
-    </p>
-    <p><strong>威力：</strong>1D25</p>
-  </div>
-
-</div>
-
-<div class="special-category" id="special_melee" style="display:none;">
-
-  <h2>🔸 特殊近接武器</h2>
-
-  <div class="card">
-    <h3>《ヒートサーベル》</h3>
-    <p><strong>威力：</strong>1D25 + DB</p>
-    <p><strong>効果：</strong><br>
-      ・3ターン連続使用するとヒート1ターン使用不可（威力半減）<br>
-      ・装甲貫通（生体装甲が残っている時、生体装甲と生身両方に半減ダメージ）
-    </p>
-    <p><strong>耐久：</strong>50</p>
-  </div>
-
-  <div class="card">
-    <h3>《レーザーナイフ》</h3>
-    <p><strong>威力：</strong>2D6 + DB</p>
-    <p><strong>効果：</strong><br>
-      ・発動時、MP5消費して刀身生成<br>
-      ・受け流し不可<br>
-      ・装甲貫通（生体装甲が残っている時、生身には半減ダメージ）
-    </p>
-    <p><strong>耐久：</strong>1</p>
-  </div>
-
-  <div class="card">
-    <h3>《ヒートナイフ》</h3>
-    <p><strong>威力：</strong>1D10 + DB</p>
-    <p><strong>効果：</strong><br>
-      ・2ターン連続使用するとヒート1ターン使用不可（威力半減）<br>
-      ・装甲貫通（生体装甲が残っている時、生体装甲と生身両方に半減ダメージ）
-    </p>
-    <p><strong>耐久：</strong>25</p>
-  </div>
-
-  <div class="card">
-    <h3>《スタンバトン》</h3>
-    <p><strong>威力：</strong>1D6 + 1 + DB</p>
-    <p><strong>効果：</strong><br>
-      ・1回命中すると、スタン効果が1ターン消失<br>
-      ・スタン中に命中すると「10 × スタン命中回数」で判定し成功すると1ターンスタン
-    </p>
-    <p><strong>耐久：</strong>30</p>
-  </div>
-
-</div>
-  
-<footer>© Oracle Redemption Project</footer>
 </body>
 </html>
