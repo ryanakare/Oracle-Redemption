@@ -29,6 +29,23 @@
   .card p {
     margin: 4px 0;
   }
+
+  /* ボタン */
+  .category-buttons {
+    margin: 20px 0;
+  }
+  .category-buttons button {
+    margin: 4px;
+    padding: 8px 14px;
+    background: #222;
+    color: #eee;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .category-buttons button:hover {
+    background: #444;
+  }
 </style>
 </head>
 
@@ -46,41 +63,53 @@
   <h1>現代武器一覧</h1>
   <p>ここに現代武器の説明を貼る。</p>
 
+  <!-- ▼▼▼ カテゴリボタン ▼▼▼ -->
+  <div class="category-buttons">
+    <button onclick="showCategory('pistol')">ピストル</button>
+    <button onclick="showCategory('special')">特殊ピストル</button>
+    <button onclick="showCategory('smg')">サブマシンガン</button>
+    <button onclick="showCategory('rifle')">ライフル</button>
+    <button onclick="showCategory('shotgun')">ショットガン</button>
+    <button onclick="showCategory('lmg')">ライトマシンガン</button>
+    <button onclick="showCategory('cannon')">キャノン</button>
+    <button onclick="showCategory('all')">全て表示</button>
+  </div>
+
   <!-- ▼▼▼ APIで自動生成されるカテゴリ ▼▼▼ -->
   <section class="weapon-category" id="pistol">
-    <h2>ピストル系</h2>
+    <h2>ピストル</h2>
   </section>
 
   <section class="weapon-category" id="special">
-    <h2>特殊ピストル系</h2>
+    <h2>特殊ピストル</h2>
   </section>
   
   <section class="weapon-category" id="smg">
-    <h2>サブマシンガン系</h2>
+    <h2>サブマシンガン</h2>
   </section>
 
   <section class="weapon-category" id="rifle">
-    <h2>ライフル系</h2>
+    <h2>ライフル</h2>
   </section>
 
   <section class="weapon-category" id="shotgun">
-    <h2>ショットガン系</h2>
+    <h2>ショットガン</h2>
   </section>
 
   <section class="weapon-category" id="lmg">
-    <h2>ライトマシンガン系</h2>
+    <h2>ライトマシンガン</h2>
   </section>
 
   <section class="weapon-category" id="cannon">
-    <h2>キャノン系</h2>
+    <h2>キャノン</h2>
   </section>
-  <!-- ▲▲▲ 必要なら他カテゴリも追加 ▲▲▲ -->
 
 </div>
 
 <footer>© Oracle Redemption Project</footer>
 
 <script>
+/* ▼▼▼ API読み込み ▼▼▼ */
 async function loadModernWeaponsDB() {
   const url = "https://script.google.com/macros/s/AKfycbyjqSb8TywQ2FQs6dc4p3XU2aHOmtlSSMFE8F2QNeos5ZoOpdmdO55qEwfHvdNqmh13/exec";
 
@@ -113,6 +142,24 @@ async function loadModernWeaponsDB() {
 }
 
 loadModernWeaponsDB();
+
+/* ▼▼▼ カテゴリ表示切り替え ▼▼▼ */
+function showCategory(cat) {
+  const cats = document.querySelectorAll('.weapon-category');
+
+  if (cat === "all") {
+    cats.forEach(c => c.style.display = "block");
+    return;
+  }
+
+  cats.forEach(c => {
+    if (c.id === cat) {
+      c.style.display = "block";
+    } else {
+      c.style.display = "none";
+    }
+  });
+}
 </script>
 
 </body>
