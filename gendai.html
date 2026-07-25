@@ -122,8 +122,72 @@
     </section>
 
   </div>
-</div>
 
+<!-- ▼▼▼ 古代武器トグル ▼▼▼ -->
+<button class="group-toggle" onclick="toggleAncient()">▶ 古代武器</button>
+
+<div id="ancient-weapons" style="display:none; margin-top:20px;">
+
+  <!-- ▼▼▼ 古代武器カテゴリボタン ▼▼▼ -->
+  <div class="category-buttons">
+    <button onclick="showAncientCategory('ancient_pistol')">古代ピストル</button>
+    <button onclick="showAncientCategory('ancient_special')">古代特殊ピストル</button>
+    <button onclick="showAncientCategory('ancient_smg')">古代サブマシンガン</button>
+    <button onclick="showAncientCategory('ancient_shotgun')">古代ショットガン</button>
+    <button onclick="showAncientCategory('ancient_double')">古代ダブルバレル</button>
+    <button onclick="showAncientCategory('ancient_assault')">古代アサルトライフル</button>
+    <button onclick="showAncientCategory('ancient_sniper')">古代スナイパーライフル</button>
+    <button onclick="showAncientCategory('ancient_lmg')">古代ライトマシンガン</button>
+    <button onclick="showAncientCategory('ancient_bazooka')">古代バズーカ</button>
+    <button onclick="showAncientCategory('ancient_grenade')">古代グレポン</button>
+    <button onclick="showAncientCategory('all')">全て表示</button>
+  </div>
+
+  <!-- ▼▼▼ 古代武器カテゴリ（APIで自動生成） ▼▼▼ -->
+  <section class="weapon-category" id="ancient_pistol">
+    <h2>古代ピストル</h2>
+  </section>
+  
+  <section class="weapon-category" id="ancient_special">
+    <h2>古代特殊ピストル</h2>
+  </section>
+  
+  <section class="weapon-category" id="ancient_smg">
+    <h2>古代サブマシンガン</h2>
+  </section>
+  
+  <section class="weapon-category" id="ancient_shotgun">
+    <h2>古代ショットガン</h2>
+  </section>
+  
+  <section class="weapon-category" id="ancient_double">
+    <h2>古代ダブルバレル</h2>
+  </section>
+  
+  <section class="weapon-category" id="ancient_assault">
+    <h2>古代アサルトライフル</h2>
+  </section>
+  
+  <section class="weapon-category" id="ancient_sniper">
+    <h2>古代スナイパーライフル</h2>
+  </section>
+  
+  <section class="weapon-category" id="ancient_lmg">
+    <h2>古代ライトマシンガン</h2>
+  </section>
+  
+  <section class="weapon-category" id="ancient_bazooka">
+    <h2>古代バズーカ</h2>
+  </section>
+  
+  <section class="weapon-category" id="ancient_grenade">
+    <h2>古代グレポン</h2>
+  </section>
+  
+
+</div>
+</div>
+  
 <footer>© Oracle Redemption Project</footer>
 
 <script>
@@ -139,7 +203,19 @@ function toggleGroup() {
     btn.textContent = '▶ 現代武器';
   }
 }
-
+  
+function toggleAncient() {
+  const box = document.getElementById('ancient-weapons');
+  const btn = document.querySelector('button[onclick="toggleAncient()"]');
+  if (box.style.display === 'none') {
+    box.style.display = 'block';
+    btn.textContent = '▼ 古代武器';
+  } else {
+    box.style.display = 'none';
+    btn.textContent = '▶ 古代武器';
+  }
+}
+  
 /* ▼▼▼ API読み込み ▼▼▼ */
 async function loadModernWeaponsDB() {
   const url = "https://script.google.com/macros/s/AKfycbyjqSb8TywQ2FQs6dc4p3XU2aHOmtlSSMFE8F2QNeos5ZoOpdmdO55qEwfHvdNqmh13/exec";
@@ -170,10 +246,43 @@ async function loadModernWeaponsDB() {
 
     box.appendChild(card);
   });
-}
+}  
 
 loadModernWeaponsDB();
 
+async function loadAncientWeaponsDB() {
+  const url = "★ここに古代武器APIのURL★";
+
+  let data;
+  try {
+    const res = await fetch(url);
+    data = await res.json();
+  } catch (e) {
+    console.error("古代武器API取得エラー:", e);
+    return;
+  }
+
+  data.forEach(w => {
+    const box = document.getElementById(w.category);
+    if (!box) return;
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>《${w.name}》</h3>
+      <p><strong>装弾：</strong>${w.ammo || "ー"}</p>
+      <p><strong>威力：</strong>${w.power || "ー"}</p>
+      <p><strong>効果：</strong><br>${(w.effect || "ー").replace(/\n/g, "<br>")}</p>
+      <p><strong>耐久：</strong>${w.durability || "ー"}</p>
+    `;
+
+    box.appendChild(card);
+  });
+}
+
+loadAncientWeaponsDB();
+  
 /* ▼▼▼ カテゴリ表示切り替え ▼▼▼ */
 function showCategory(cat) {
   const cats = document.querySelectorAll('#modern-weapons .weapon-category');
@@ -191,6 +300,23 @@ function showCategory(cat) {
     }
   });
 }
+
+function showAncientCategory(cat) {
+  const cats = document.querySelectorAll('#ancient-weapons .weapon-category');
+
+  if (cat === "all") {
+    cats.forEach(c => c.style.display = "block");
+    return;
+  }
+
+  cats.forEach(c => {
+    if (c.id === cat) {
+      c.style.display = "block";
+    } else {
+      c.style.display = "none";
+    }
+  });
+}  
 </script>
 
 </body>
