@@ -6,6 +6,25 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
+  /* タブUI */
+  .tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .tab {
+    padding: 10px 16px;
+    background: #222;
+    color: #eee;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .tab.active {
+    background: #444;
+    border-color: #888;
+  }
+
   .weapon-category {
     margin: 40px 0;
   }
@@ -22,27 +41,7 @@
     background: #111;
     color: #eee;
   }
-  .card h3 {
-    margin: 0 0 6px;
-    font-size: 1.1rem;
-  }
-  .card p {
-    margin: 4px 0;
-  }
 
-  /* トグル */
-  .group-toggle {
-    margin: 20px 0;
-    padding: 10px 16px;
-    background: #222;
-    color: #eee;
-    border: 1px solid #555;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-
-  /* ボタン */
   .category-buttons {
     margin: 20px 0;
   }
@@ -73,14 +72,16 @@
 
 <div class="container">
   <h1>武器一覧</h1>
-  <p>現代武器トグルを開くと現状他のトグルは下に行ってしまうよ</p>
 
-  <!-- ▼▼▼ 現代武器トグル ▼▼▼ -->
-  <button class="group-toggle" onclick="toggleGroup()">▶ 現代武器</button>
+  <!-- ▼▼▼ タブUI ▼▼▼ -->
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('modern')">現代武器</div>
+    <div class="tab" onclick="switchTab('ancient')">古代武器</div>
+  </div>
 
-  <div id="modern-weapons" style="display:none; margin-top:20px;">
+  <!-- ▼▼▼ 現代武器 ▼▼▼ -->
+  <div id="modern" class="tab-content">
 
-    <!-- ▼▼▼ カテゴリボタン ▼▼▼ -->
     <div class="category-buttons">
       <button onclick="showCategory('pistol')">ピストル</button>
       <button onclick="showCategory('special')">特殊ピストル</button>
@@ -92,150 +93,71 @@
       <button onclick="showCategory('all')">全て表示</button>
     </div>
 
-    <!-- ▼▼▼ APIで自動生成されるカテゴリ ▼▼▼ -->
-    <section class="weapon-category" id="pistol">
-      <h2>ピストル</h2>
-    </section>
+    <section class="weapon-category" id="pistol"><h2>ピストル</h2></section>
+    <section class="weapon-category" id="special"><h2>特殊ピストル</h2></section>
+    <section class="weapon-category" id="smg"><h2>サブマシンガン</h2></section>
+    <section class="weapon-category" id="rifle"><h2>ライフル</h2></section>
+    <section class="weapon-category" id="shotgun"><h2>ショットガン</h2></section>
+    <section class="weapon-category" id="lmg"><h2>ライトマシンガン</h2></section>
+    <section class="weapon-category" id="cannon"><h2>キャノン</h2></section>
 
-    <section class="weapon-category" id="special">
-      <h2>特殊ピストル</h2>
-    </section>
-    
-    <section class="weapon-category" id="smg">
-      <h2>サブマシンガン</h2>
-    </section>
-
-    <section class="weapon-category" id="rifle">
-      <h2>ライフル</h2>
-    </section>
-
-    <section class="weapon-category" id="shotgun">
-      <h2>ショットガン</h2>
-    </section>
-
-    <section class="weapon-category" id="lmg">
-      <h2>ライトマシンガン</h2>
-    </section>
-
-    <section class="weapon-category" id="cannon">
-      <h2>キャノン</h2>
-    </section>
-</div>
-  
-
-<!-- ▼▼▼ 古代武器トグル ▼▼▼ -->
-<button class="group-toggle" onclick="toggleAncient()">▶ 古代武器</button>
-
-<div id="ancient-weapons" style="display:none; margin-top:20px;">
-
-  <!-- ▼▼▼ 古代武器カテゴリボタン ▼▼▼ -->
-  <div class="category-buttons">
-    <button onclick="showAncientCategory('ancient_pistol')">古代ピストル</button>
-    <button onclick="showAncientCategory('ancient_special')">古代特殊ピストル</button>
-    <button onclick="showAncientCategory('ancient_smg')">古代サブマシンガン</button>
-    <button onclick="showAncientCategory('ancient_shotgun')">古代ショットガン</button>
-    <button onclick="showAncientCategory('ancient_double')">古代ダブルバレル</button>
-    <button onclick="showAncientCategory('ancient_assault')">古代アサルトライフル</button>
-    <button onclick="showAncientCategory('ancient_sniper')">古代スナイパーライフル</button>
-    <button onclick="showAncientCategory('ancient_lmg')">古代ライトマシンガン</button>
-    <button onclick="showAncientCategory('ancient_bazooka')">古代バズーカ</button>
-    <button onclick="showAncientCategory('ancient_grenade')">古代グレポン</button>
-    <button onclick="showAncientCategory('all')">全て表示</button>
   </div>
 
-  <!-- ▼▼▼ 古代武器カテゴリ（APIで自動生成） ▼▼▼ -->
-  <section class="weapon-category" id="ancient_pistol">
-    <h2>古代ピストル</h2>
-  </section>
-  
-  <section class="weapon-category" id="ancient_special">
-    <h2>古代特殊ピストル</h2>
-  </section>
-  
-  <section class="weapon-category" id="ancient_smg">
-    <h2>古代サブマシンガン</h2>
-  </section>
-  
-  <section class="weapon-category" id="ancient_shotgun">
-    <h2>古代ショットガン</h2>
-  </section>
-  
-  <section class="weapon-category" id="ancient_double">
-    <h2>古代ダブルバレル</h2>
-  </section>
-  
-  <section class="weapon-category" id="ancient_assault">
-    <h2>古代アサルトライフル</h2>
-  </section>
-  
-  <section class="weapon-category" id="ancient_sniper">
-    <h2>古代スナイパーライフル</h2>
-  </section>
-  
-  <section class="weapon-category" id="ancient_lmg">
-    <h2>古代ライトマシンガン</h2>
-  </section>
-  
-  <section class="weapon-category" id="ancient_bazooka">
-    <h2>古代バズーカ</h2>
-  </section>
-  
-  <section class="weapon-category" id="ancient_grenade">
-    <h2>古代グレポン</h2>
-  </section>
-  
-</div>
+  <!-- ▼▼▼ 古代武器 ▼▼▼ -->
+  <div id="ancient" class="tab-content" style="display:none;">
+
+    <div class="category-buttons">
+      <button onclick="showAncientCategory('ancient_pistol')">古代ピストル</button>
+      <button onclick="showAncientCategory('ancient_special')">古代特殊ピストル</button>
+      <button onclick="showAncientCategory('ancient_smg')">古代サブマシンガン</button>
+      <button onclick="showAncientCategory('ancient_shotgun')">古代ショットガン</button>
+      <button onclick="showAncientCategory('ancient_double')">古代ダブルバレル</button>
+      <button onclick="showAncientCategory('ancient_assault')">古代アサルトライフル</button>
+      <button onclick="showAncientCategory('ancient_sniper')">古代スナイパーライフル</button>
+      <button onclick="showAncientCategory('ancient_lmg')">古代ライトマシンガン</button>
+      <button onclick="showAncientCategory('ancient_bazooka')">古代バズーカ</button>
+      <button onclick="showAncientCategory('ancient_grenade')">古代グレポン</button>
+      <button onclick="showAncientCategory('all')">全て表示</button>
+    </div>
+
+    <section class="weapon-category" id="ancient_pistol"><h2>古代ピストル</h2></section>
+    <section class="weapon-category" id="ancient_special"><h2>古代特殊ピストル</h2></section>
+    <section class="weapon-category" id="ancient_smg"><h2>古代サブマシンガン</h2></section>
+    <section class="weapon-category" id="ancient_shotgun"><h2>古代ショットガン</h2></section>
+    <section class="weapon-category" id="ancient_double"><h2>古代ダブルバレル</h2></section>
+    <section class="weapon-category" id="ancient_assault"><h2>古代アサルトライフル</h2></section>
+    <section class="weapon-category" id="ancient_sniper"><h2>古代スナイパーライフル</h2></section>
+    <section class="weapon-category" id="ancient_lmg"><h2>古代ライトマシンガン</h2></section>
+    <section class="weapon-category" id="ancient_bazooka"><h2>古代バズーカ</h2></section>
+    <section class="weapon-category" id="ancient_grenade"><h2>古代グレポン</h2></section>
+
+  </div>
+
 </div>
 
-  
 <footer>© Oracle Redemption Project</footer>
 
 <script>
-/* ▼▼▼ トグル ▼▼▼ */
-function toggleGroup() {
-  const box = document.getElementById('modern-weapons');
-  const btn = document.querySelector('.group-toggle');
-  if (box.style.display === 'none') {
-    box.style.display = 'block';
-    btn.textContent = '▼ 現代武器';
-  } else {
-    box.style.display = 'none';
-    btn.textContent = '▶ 現代武器';
-  }
+/* ▼▼▼ タブ切り替え ▼▼▼ */
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+  document.getElementById(tab).style.display = 'block';
+
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.tab[onclick="switchTab('${tab}')"]`).classList.add('active');
 }
-  
-function toggleAncient() {
-  const box = document.getElementById('ancient-weapons');
-  const btn = document.querySelector('button[onclick="toggleAncient()"]');
-  if (box.style.display === 'none') {
-    box.style.display = 'block';
-    btn.textContent = '▼ 古代武器';
-  } else {
-    box.style.display = 'none';
-    btn.textContent = '▶ 古代武器';
-  }
-}
-  
-/* ▼▼▼ API読み込み ▼▼▼ */
+
+/* ▼▼▼ 現代武器API ▼▼▼ */
 async function loadModernWeaponsDB() {
   const url = "https://script.google.com/macros/s/AKfycbyjqSb8TywQ2FQs6dc4p3XU2aHOmtlSSMFE8F2QNeos5ZoOpdmdO55qEwfHvdNqmh13/exec";
-
-  let data;
-  try {
-    const res = await fetch(url);
-    data = await res.json();
-  } catch (e) {
-    console.error("API取得エラー:", e);
-    return;
-  }
+  const res = await fetch(url);
+  const data = await res.json();
 
   data.forEach(w => {
     const box = document.getElementById(w.category);
     if (!box) return;
-
     const card = document.createElement("div");
     card.className = "card";
-
     card.innerHTML = `
       <h3>《${w.name}》</h3>
       <p><strong>装弾：</strong>${w.ammo || "ー"}</p>
@@ -243,80 +165,44 @@ async function loadModernWeaponsDB() {
       <p><strong>効果：</strong><br>${(w.effect || "ー").replace(/\n/g, "<br>")}</p>
       <p><strong>耐久：</strong>${w.durability || "ー"}</p>
     `;
-
-    box.appendChild(card);
-  });
-}  
-
-loadModernWeaponsDB();
-
-async function loadAncientWeaponsDB() {
-  const url = "https://script.google.com/macros/s/AKfycbxL7EgSt9n9XNUeIpwaEPjHwaMKZiexDhEVgEZxdvHqRX3AJMJb2LvIGmHtfFPxT8I/exec";
-
-  let data;
-  try {
-    const res = await fetch(url);
-    data = await res.json();
-  } catch (e) {
-    console.error("古代武器API取得エラー:", e);
-    return;
-  }
-
-  data.forEach(w => {
-    const box = document.getElementById(w.category);
-    if (!box) return;
-
-    const card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-      <h3>《${w.name}》</h3>
-      <p><strong>装弾：</strong>${w.ammo || "ー"}</p>
-      <p><strong>威力：</strong>${w.power || "ー"}</p>
-      <p><strong>効果：</strong><br>${(w.effect || "ー").replace(/\n/g, "<br>")}</p>
-      <p><strong>耐久：</strong>${w.durability || "ー"}</p>
-    `;
-
     box.appendChild(card);
   });
 }
+loadModernWeaponsDB();
 
-loadAncientWeaponsDB();
-  
-/* ▼▼▼ カテゴリ表示切り替え ▼▼▼ */
-function showCategory(cat) {
-  const cats = document.querySelectorAll('#modern-weapons .weapon-category');
+/* ▼▼▼ 古代武器API ▼▼▼ */
+async function loadAncientWeaponsDB() {
+  const url = "https://script.google.com/macros/s/AKfycbxL7EgSt9n9XNUeIpwaEPjHwaMKZiexDhEVgEZxdvHqRX3AJMJb2LvIGmHtfFPxT8I/exec";
+  const res = await fetch(url);
+  const data = await res.json();
 
-  if (cat === "all") {
-    cats.forEach(c => c.style.display = "block");
-    return;
-  }
-
-  cats.forEach(c => {
-    if (c.id === cat) {
-      c.style.display = "block";
-    } else {
-      c.style.display = "none";
-    }
+  data.forEach(w => {
+    const box = document.getElementById(w.category);
+    if (!box) return;
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <h3>《${w.name}》</h3>
+      <p><strong>装弾：</strong>${w.ammo || "ー"}</p>
+      <p><strong>威力：</strong>${w.power || "ー"}</p>
+      <p><strong>効果：</strong><br>${(w.effect || "ー").replace(/\n/g, "<br>")}</p>
+      <p><strong>耐久：</strong>${w.durability || "ー"}</p>
+    `;
+    box.appendChild(card);
   });
+}
+loadAncientWeaponsDB();
+
+/* ▼▼▼ カテゴリ切り替え ▼▼▼ */
+function showCategory(cat) {
+  const cats = document.querySelectorAll('#modern .weapon-category');
+  cats.forEach(c => c.style.display = (cat === "all" || c.id === cat) ? "block" : "none");
 }
 
 function showAncientCategory(cat) {
-  const cats = document.querySelectorAll('#ancient-weapons .weapon-category');
-
-  if (cat === "all") {
-    cats.forEach(c => c.style.display = "block");
-    return;
-  }
-
-  cats.forEach(c => {
-    if (c.id === cat) {
-      c.style.display = "block";
-    } else {
-      c.style.display = "none";
-    }
-  });
-}  
+  const cats = document.querySelectorAll('#ancient .weapon-category');
+  cats.forEach(c => c.style.display = (cat === "all" || c.id === cat) ? "block" : "none");
+}
 </script>
 
 </body>
