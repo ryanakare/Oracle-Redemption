@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Oracle Redemption - 昆虫チップ</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  /* ゲノムチップカードの簡易デザイン（必要ならCSSに移動） */
+  .genome-area {
+    width: 90%;
+    margin: 40px auto;
+  }
+
+  .genome-card {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #444;
+  }
+
+  .genome-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+  }
+
+  .genome-card p {
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h1>ギャラリー</h1>
+  <p>ロゴ画像や設定資料をここに並べる。</p>
+</div>
+
+<!-- ▼▼▼ 昆虫チップ一覧 ▼▼▼ -->
+<div class="genome-area" id="genomeArea">
+  <h1>昆虫チップ一覧</h1>
+  <p>DB_昆虫チップ から自動生成されています。</p>
+</div>
+<!-- ▲▲▲ 昆虫チップ一覧 ▲▲▲ -->
+
+<footer>© Oracle Redemption Project</footer>
+
+<script>
+// ▼▼▼ API連携：昆虫チップDBを読み込む ▼▼▼
+fetch("https://script.google.com/macros/s/AKfycbyW2D8-ZpCdxiD1_U6L5xMOnKvgDDv5uOYcGPcsQJiqxpcA16K8hFRJ00DmmdcTImfJ/exec")
+  .then(res => res.json())
+  .then(data => {
+    const area = document.getElementById("genomeArea");
+
+    data.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "genome-card";
+
+      card.innerHTML = `
+        <h2>${item.name}（${item.part} / Rank ${item.rank}）</h2>
+        <p>${item.effect}</p>
+      `;
+
+      area.appendChild(card);
+    });
+  })
+  .catch(err => {
+    console.error("API読み込みエラー:", err);
+  });
+// ▲▲▲ API連携ここまで ▲▲▲
+</script>
+
+</body>
+</html>
